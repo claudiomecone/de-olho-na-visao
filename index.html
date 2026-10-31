@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>De Olho na Visão - Blog de Saúde Visual</title>
-    <meta name="description" content="Blog de saúde visual com dicas de prevenção, cuidados diários e informações sobre doenças oculares. Cuide bem da sua visão.">
+    <title>De Olho na Visão | Saúde Visual, Prevenção e Cuidados com os Olhos</title>
+    <meta name="description" content="Aprenda a cuidar da saúde dos olhos. Conheça hábitos preventivos, cuidados com lentes de contato, doenças oculares, sinais de alerta e orientações sobre exames oftalmológicos.">
+    <meta property="og:title" content="De Olho na Visão | Saúde Visual, Prevenção e Cuidados com os Olhos">
+    <meta property="og:description" content="Guia educativo sobre saúde visual: hábitos preventivos, uso seguro de lentes de contato, doenças oculares, sinais de alerta e orientações sobre exames.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="theme-color" content="#0d3a5c">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css">
@@ -17,13 +22,17 @@
             --primary-light: #e8f4fc;
             --primary-dark: #0d3a5c;
             --accent: #f59e0b;
+            --accent-hover: #fbbf24;
             --accent-light: #fef3c7;
-            --teal: #0d9488;
+            --teal: #0f766e;
             --teal-light: #ccfbf1;
-            --rose: #e11d48;
+            --rose: #be123c;
+            --rose-dot: #e11d48;
             --rose-light: #ffe4e6;
             --purple: #7c3aed;
             --purple-light: #ede9fe;
+            --indigo: #4338ca;
+            --indigo-light: #e0e7ff;
             --text: #1e293b;
             --text-light: #64748b;
             --bg: #f8fafc;
@@ -33,30 +42,57 @@
             --radius: 20px;
         }
 
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.7;
+            font-size: 1.0625rem;
+            line-height: 1.65;
             overflow-x: hidden;
         }
 
-        /* Header */
+        section[id], .category-block[id] { scroll-margin-top: 96px; }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--primary-dark);
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0 0 10px 0;
+            z-index: 2000;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .skip-link:focus { left: 0; }
+
+        /* ===== Header ===== */
         header {
             position: fixed;
             top: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.92);
+            background: rgba(255,255,255,0.94);
             backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            transition: box-shadow 0.3s ease;
         }
         header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 
         nav {
             max-width: 1240px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.9rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -67,39 +103,35 @@
             align-items: center;
             gap: 0.6rem;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             background: radial-gradient(circle at center, #0a0a0a 18%, #1a3a5c 20%, #2a6a9c 35%, #5a9ac0 50%, #8ab8d8 65%, #c4a060 80%, #8a7a5a 95%);
             box-shadow: 0 0 0 2px rgba(30,95,142,0.2), inset 0 0 8px rgba(0,0,0,0.3);
             position: relative;
             flex-shrink: 0;
         }
-
         .logo-icon::after {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
+            width: 6px; height: 6px;
             background: #000;
             border-radius: 50%;
-            box-shadow: 0 0 2px rgba(0,0,0,0.8);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.75rem;
             align-items: center;
         }
 
@@ -107,13 +139,11 @@
             text-decoration: none;
             color: var(--text);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
             transition: color 0.3s;
             position: relative;
         }
-
         .nav-links a:hover { color: var(--primary); }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -124,16 +154,6 @@
         }
         .nav-links a:hover::after { width: 100%; }
 
-        .nav-cta {
-            background: var(--primary);
-            color: white !important;
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            transition: all 0.3s !important;
-        }
-        .nav-cta:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .nav-cta::after { display: none !important; }
-
         .mobile-menu {
             display: none;
             background: none;
@@ -141,15 +161,12 @@
             cursor: pointer;
             padding: 0.5rem;
         }
-        .mobile-menu svg { width: 24px; height: 24px; color: var(--text); }
+        .mobile-menu svg { width: 26px; height: 26px; color: var(--text); }
 
-        /* Hero com íris */
+        /* ===== Hero ===== */
         .hero {
-            margin-top: 76px;
+            margin-top: 72px;
             position: relative;
-            min-height: 92vh;
-            display: flex;
-            align-items: center;
             overflow: hidden;
             background: #0a1628;
         }
@@ -157,9 +174,9 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: 
-                radial-gradient(ellipse at 60% 50%, 
-                    rgba(10,10,10,0.95) 0%, 
+            background:
+                radial-gradient(ellipse at 60% 50%,
+                    rgba(10,10,10,0.95) 0%,
                     rgba(10,10,10,0.85) 8%,
                     rgba(26,58,92,0.9) 10%,
                     rgba(42,106,156,0.85) 18%,
@@ -168,67 +185,62 @@
                     rgba(196,160,96,0.7) 55%,
                     rgba(138,122,90,0.75) 75%,
                     rgba(60,50,40,0.9) 90%,
-                    rgba(10,10,10,1) 100%
-                );
-            background-size: cover;
-            background-position: center;
+                    rgba(10,10,10,1) 100%);
         }
-
         .hero-bg::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: 
-                repeating-conic-gradient(from 0deg at 60% 50%, 
-                    rgba(255,255,255,0.03) 0deg, 
-                    transparent 2deg, 
+            background:
+                repeating-conic-gradient(from 0deg at 60% 50%,
+                    rgba(255,255,255,0.03) 0deg,
+                    transparent 2deg,
                     transparent 8deg,
-                    rgba(255,255,255,0.02) 10deg
-                );
+                    rgba(255,255,255,0.02) 10deg);
             mix-blend-mode: overlay;
         }
-
         .hero-bg::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10,22,40,0.7) 0%, rgba(10,22,40,0.3) 50%, rgba(10,22,40,0.8) 100%);
+            background: linear-gradient(135deg, rgba(10,22,40,0.72) 0%, rgba(10,22,40,0.35) 50%, rgba(10,22,40,0.8) 100%);
         }
 
         .hero-content {
             max-width: 1240px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 3.5rem 2rem 3rem;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 3rem;
             align-items: center;
             position: relative;
             z-index: 2;
-            width: 100%;
         }
 
-        .hero-text .tag {
+        .hero-eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
-            color: white;
-            padding: 0.5rem 1.2rem;
+            color: #fff;
+            padding: 0.45rem 1.1rem;
             border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.8125rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            border: 1px solid rgba(255,255,255,0.18);
         }
 
         .hero-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
-            line-height: 1.1;
-            color: white;
-            margin-bottom: 1.5rem;
+            font-size: clamp(2.125rem, 4.6vw, 3.375rem);
+            line-height: 1.12;
+            color: #fff;
+            margin-bottom: 1.25rem;
         }
 
         .hero-text h1 .highlight {
@@ -236,7 +248,6 @@
             position: relative;
             display: inline-block;
         }
-
         .hero-text h1 .highlight::after {
             content: '';
             position: absolute;
@@ -249,10 +260,10 @@
         }
 
         .hero-text p {
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 2rem;
-            max-width: 520px;
+            font-size: 1.125rem;
+            color: rgba(255,255,255,0.88);
+            margin-bottom: 1.75rem;
+            max-width: 34em;
         }
 
         .hero-buttons {
@@ -263,29 +274,28 @@
 
         .btn-primary {
             background: var(--accent);
-            color: white;
+            color: var(--primary-dark);
             padding: 0.9rem 2rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            border: none;
-            cursor: pointer;
             font-size: 1rem;
         }
         .btn-primary:hover {
-            background: #d97706;
+            background: var(--accent-hover);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245,158,11,0.4);
+            box-shadow: 0 8px 25px rgba(245,158,11,0.35);
         }
+        .btn-primary:focus-visible { outline-color: #fff; }
 
         .btn-secondary {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
-            color: white;
+            color: #fff;
             padding: 0.9rem 2rem;
             border-radius: 50px;
             text-decoration: none;
@@ -294,53 +304,46 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            border: 2px solid rgba(255,255,255,0.3);
-            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.35);
             font-size: 1rem;
         }
         .btn-secondary:hover {
             background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.5);
+            border-color: rgba(255,255,255,0.55);
             transform: translateY(-2px);
         }
+        .btn-secondary:focus-visible { outline-color: #fff; }
 
         .hero-visual {
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
 
         .iris-container {
             position: relative;
-            width: 420px;
-            height: 420px;
+            width: min(380px, 78vw);
+            height: min(380px, 78vw);
             animation: irisFloat 6s ease-in-out infinite;
         }
 
         @keyframes irisFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
 
         .iris-main {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: 
-                radial-gradient(circle at center, 
-                    #0a0a0a 0%, 
-                    #0a0a0a 15%,
-                    #1a3a5c 16%,
-                    #2a6a9c 25%,
-                    #5a9ac0 35%,
-                    #8ab8d8 45%,
-                    #c4a060 60%,
-                    #8a7a5a 75%,
-                    #5a4a3a 90%,
-                    #2a1a0a 100%
-                );
-            box-shadow: 
+            background:
+                radial-gradient(circle at center,
+                    #0a0a0a 0%, #0a0a0a 15%,
+                    #1a3a5c 16%, #2a6a9c 25%,
+                    #5a9ac0 35%, #8ab8d8 45%,
+                    #c4a060 60%, #8a7a5a 75%,
+                    #5a4a3a 90%, #2a1a0a 100%);
+            box-shadow:
                 0 0 0 8px rgba(10,10,10,0.8),
                 0 0 60px rgba(42,106,156,0.3),
                 0 0 120px rgba(42,106,156,0.15),
@@ -348,28 +351,23 @@
             position: relative;
             overflow: hidden;
         }
-
         .iris-main::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: 
-                repeating-conic-gradient(from 0deg at center, 
-                    rgba(255,255,255,0.08) 0deg, 
-                    transparent 1.5deg, 
+            background:
+                repeating-conic-gradient(from 0deg at center,
+                    rgba(255,255,255,0.08) 0deg,
+                    transparent 1.5deg,
                     transparent 6deg,
-                    rgba(255,255,255,0.05) 7.5deg
-                );
+                    rgba(255,255,255,0.05) 7.5deg);
             border-radius: 50%;
         }
-
         .iris-main::after {
             content: '';
             position: absolute;
-            top: 25%;
-            left: 30%;
-            width: 20%;
-            height: 15%;
+            top: 25%; left: 30%;
+            width: 20%; height: 15%;
             background: radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(8px);
@@ -377,24 +375,20 @@
 
         .iris-ring {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
             border: 1px solid rgba(255,255,255,0.1);
         }
-
         .iris-ring-1 { width: 50%; height: 50%; }
         .iris-ring-2 { width: 70%; height: 70%; border-color: rgba(196,160,96,0.2); }
         .iris-ring-3 { width: 90%; height: 90%; border-color: rgba(138,184,216,0.15); }
 
         .iris-glow {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 30%;
-            height: 30%;
+            width: 30%; height: 30%;
             background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
             border-radius: 50%;
             animation: irisPulse 3s ease-in-out infinite;
@@ -402,48 +396,57 @@
 
         @keyframes irisPulse {
             0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 2.5rem;
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.15);
+        .hero-pillars {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 0.5rem;
         }
 
-        .stat-number {
-            font-size: 1.8rem;
+        .pillar {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .pillar-title {
+            display: block;
+            font-size: 0.875rem;
             font-weight: 700;
-            color: var(--accent);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
         }
 
-        /* Sections */
+        .pillar-text {
+            font-size: 0.9375rem;
+            color: rgba(255,255,255,0.88);
+        }
+
+        /* ===== Sections base ===== */
         .section {
-            padding: 5rem 2rem;
+            padding: 4.5rem 2rem;
             max-width: 1240px;
             margin: 0 auto;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 3.5rem;
+            margin-bottom: 3rem;
         }
 
         .section-tag {
             display: inline-block;
             padding: 0.4rem 1.2rem;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.875rem;
             font-weight: 600;
             margin-bottom: 1rem;
         }
@@ -453,45 +456,44 @@
         .tag-rose { background: var(--rose-light); color: var(--rose); }
         .tag-amber { background: var(--accent-light); color: #b45309; }
         .tag-purple { background: var(--purple-light); color: var(--purple); }
-        .tag-indigo { background: #e0e7ff; color: #4338ca; }
+        .tag-indigo { background: var(--indigo-light); color: var(--indigo); }
 
         .section-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(1.625rem, 3.2vw, 2.125rem);
             color: var(--text);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
         }
 
         .section-header p {
             color: var(--text-light);
-            max-width: 650px;
+            max-width: 62ch;
             margin: 0 auto;
-            font-size: 1.05rem;
+            font-size: 1.0625rem;
         }
 
-        /* Care Cards */
+        /* ===== Care Cards ===== */
         .care-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
 
         .care-card {
-            background: white;
+            background: #fff;
             border-radius: var(--radius);
             padding: 2rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(0,0,0,0.04);
             position: relative;
             overflow: hidden;
         }
-
         .care-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
         }
-
         .care-card::before {
             content: '';
             position: absolute;
@@ -510,44 +512,51 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.1rem;
             background: var(--icon-bg, var(--primary-light));
         }
-
         .care-icon svg {
             width: 28px; height: 28px;
             color: var(--icon-color, var(--primary));
         }
 
         .care-card h3 {
-            font-size: 1.15rem;
+            font-size: 1.3125rem;
             font-weight: 700;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
         }
 
         .care-card p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-light);
-            line-height: 1.7;
+            line-height: 1.65;
         }
+
+        .care-card p a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .care-card p a:hover { text-decoration: underline; }
 
         .care-card .highlight {
             display: inline-block;
             background: var(--accent-light);
             color: #92400e;
-            padding: 0.15rem 0.5rem;
+            padding: 0.15rem 0.6rem;
             border-radius: 4px;
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-top: 0.8rem;
+            font-size: 0.875rem;
+            margin-top: 0.9rem;
         }
 
-        /* 20-20-20 Feature */
+        /* ===== 20-20-20 ===== */
         .feature-box {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             border-radius: var(--radius);
             padding: 3rem;
-            color: white;
+            color: #fff;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
@@ -556,7 +565,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .feature-box::before {
             content: '';
             position: absolute;
@@ -568,19 +576,26 @@
 
         .feature-text h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.75rem;
             margin-bottom: 1rem;
         }
-
         .feature-text p {
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
+            opacity: 0.92;
+            margin-bottom: 1rem;
             font-size: 1rem;
+            line-height: 1.65;
+        }
+        .feature-text p.feature-note {
+            font-size: 0.9375rem;
+            opacity: 0.8;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.9rem;
         }
 
         .feature-steps {
             display: flex;
             gap: 1rem;
+            margin-top: 1.25rem;
         }
 
         .feature-step {
@@ -588,22 +603,20 @@
             background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
             border-radius: 12px;
-            padding: 1.2rem;
+            padding: 1.1rem;
             text-align: center;
             border: 1px solid rgba(255,255,255,0.15);
         }
-
         .feature-step .num {
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 700;
             font-family: 'Playfair Display', serif;
             color: var(--accent);
         }
-
         .feature-step .label {
-            font-size: 0.8rem;
-            opacity: 0.85;
-            margin-top: 0.3rem;
+            font-size: 0.875rem;
+            opacity: 0.88;
+            margin-top: 0.25rem;
         }
 
         .feature-visual {
@@ -613,30 +626,25 @@
             z-index: 1;
         }
 
-        /* Cuidados Complementares */
+        /* ===== Complementares ===== */
         .complementary-section {
-            padding: 5rem 2rem;
+            padding: 4.5rem 2rem;
             background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-            position: relative;
         }
 
-        .complementary-container {
-            max-width: 1240px;
-            margin: 0 auto;
-        }
+        .complementary-container { max-width: 1240px; margin: 0 auto; }
 
         .complementary-intro {
-            background: white;
+            background: #fff;
             border-radius: var(--radius);
-            padding: 2rem 2.5rem;
+            padding: 1.75rem 2.25rem;
             box-shadow: var(--shadow);
-            margin-bottom: 3rem;
+            margin-bottom: 2.75rem;
             display: flex;
             align-items: center;
             gap: 1.5rem;
             border-left: 5px solid var(--primary);
         }
-
         .complementary-intro-icon {
             width: 56px; height: 56px;
             background: var(--primary-light);
@@ -646,36 +654,24 @@
             justify-content: center;
             flex-shrink: 0;
         }
-
-        .complementary-intro-icon svg {
-            width: 28px; height: 28px;
-            color: var(--primary);
-        }
-
+        .complementary-intro-icon svg { width: 28px; height: 28px; color: var(--primary); }
         .complementary-intro h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.375rem;
+            margin-bottom: 0.25rem;
         }
+        .complementary-intro p { color: var(--text-light); font-size: 1rem; }
 
-        .complementary-intro p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .category-block {
-            margin-bottom: 2.5rem;
-        }
+        .category-block { margin-bottom: 2.5rem; }
 
         .category-header {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
+            margin-bottom: 1.4rem;
+            padding-bottom: 0.9rem;
             border-bottom: 2px dashed rgba(0,0,0,0.08);
         }
-
         .category-emoji {
             width: 52px; height: 52px;
             border-radius: 14px;
@@ -685,17 +681,16 @@
             font-size: 1.6rem;
             flex-shrink: 0;
         }
-
         .category-header h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4375rem;
             color: var(--text);
+            line-height: 1.3;
         }
-
         .category-header .cat-subtitle {
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
             color: var(--text-light);
-            margin-top: 0.2rem;
+            margin-top: 0.15rem;
         }
 
         .tips-list {
@@ -705,23 +700,21 @@
         }
 
         .tip-item {
-            background: white;
+            background: #fff;
             border-radius: 16px;
             padding: 1.5rem;
             box-shadow: var(--shadow);
-            transition: all 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             gap: 1rem;
             border: 1px solid rgba(0,0,0,0.04);
             position: relative;
             overflow: hidden;
         }
-
         .tip-item:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
         }
-
         .tip-item::after {
             content: '';
             position: absolute;
@@ -731,7 +724,6 @@
             transform: scaleX(0);
             transition: transform 0.3s;
         }
-
         .tip-item:hover::after { transform: scaleX(1); }
 
         .tip-item-icon {
@@ -743,21 +735,16 @@
             flex-shrink: 0;
             background: var(--tip-bg, var(--primary-light));
         }
-
-        .tip-item-icon svg {
-            width: 22px; height: 22px;
-            color: var(--tip-color, var(--primary));
-        }
+        .tip-item-icon svg { width: 22px; height: 22px; color: var(--tip-color, var(--primary)); }
 
         .tip-item-content h4 {
-            font-size: 1rem;
+            font-size: 1.0625rem;
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
             color: var(--text);
         }
-
         .tip-item-content p {
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
             color: var(--text-light);
             line-height: 1.6;
         }
@@ -766,48 +753,36 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             border-radius: var(--radius);
             padding: 2.5rem;
-            color: white;
+            color: #fff;
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2.5rem;
             position: relative;
             overflow: hidden;
         }
-
-        .complementary-footer::before {
-            content: '';
-            position: absolute;
-            top: -50%; right: -10%;
-            width: 300px; height: 300px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-        }
-
+        .complementary-footer::before,
         .complementary-footer::after {
             content: '';
             position: absolute;
-            bottom: -40%; left: -5%;
-            width: 250px; height: 250px;
             background: rgba(255,255,255,0.05);
             border-radius: 50%;
         }
-
+        .complementary-footer::before { top: -50%; right: -10%; width: 300px; height: 300px; }
+        .complementary-footer::after { bottom: -40%; left: -5%; width: 250px; height: 250px; }
         .complementary-footer h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.7rem;
             position: relative;
             z-index: 1;
         }
-
         .complementary-footer p {
-            opacity: 0.9;
-            max-width: 600px;
+            opacity: 0.92;
+            max-width: 60ch;
             margin: 0 auto;
             position: relative;
             z-index: 1;
             font-size: 1rem;
         }
-
         .complementary-footer .shield-icon {
             display: inline-flex;
             align-items: center;
@@ -819,123 +794,73 @@
             position: relative;
             z-index: 1;
         }
+        .complementary-footer .shield-icon svg { width: 32px; height: 32px; color: var(--accent); }
 
-        .complementary-footer .shield-icon svg {
-            width: 32px; height: 32px;
-            color: var(--accent);
-        }
-
-        /* Diseases */
-        .diseases-section {
-            background: white;
-            padding: 5rem 2rem;
-        }
-
-        .diseases-container {
-            max-width: 1240px;
-            margin: 0 auto;
-        }
-
-        .disease-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+        /* ===== Doenças ===== */
+        .diseases-section { background: #fff; padding: 4.5rem 2rem; }
+        .diseases-container { max-width: 1240px; margin: 0 auto; }
+        .disease-list { display: flex; flex-direction: column; gap: 1.4rem; }
 
         .disease-item {
             background: var(--bg);
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 1.9rem 2rem;
             display: grid;
-            grid-template-columns: auto 1fr auto;
+            grid-template-columns: auto 1fr;
             gap: 1.5rem;
-            align-items: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: 2px solid transparent;
+            align-items: start;
+            transition: box-shadow 0.3s, background 0.3s;
+            border: 1px solid rgba(0,0,0,0.04);
         }
-
         .disease-item:hover {
-            background: white;
+            background: #fff;
             box-shadow: var(--shadow-hover);
-            border-color: var(--primary-light);
-            transform: translateX(5px);
         }
 
         .disease-icon {
-            width: 64px; height: 64px;
+            width: 60px; height: 60px;
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
-
-        .disease-icon svg {
-            width: 32px; height: 32px;
-        }
+        .disease-icon svg { width: 30px; height: 30px; }
 
         .disease-info h3 {
-            font-size: 1.2rem;
+            font-size: 1.3125rem;
             font-weight: 700;
             margin-bottom: 0.4rem;
+            line-height: 1.3;
         }
-
         .disease-info p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-light);
-            line-height: 1.6;
+            line-height: 1.65;
+            max-width: 75ch;
         }
 
-        .disease-arrow {
-            width: 40px; height: 40px;
-            border-radius: 50%;
-            background: var(--primary-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .disease-item:hover .disease-arrow {
-            background: var(--primary);
-            color: white;
-        }
-
-        .disease-arrow svg {
-            width: 18px; height: 18px;
-            color: var(--primary);
-            transition: color 0.3s;
-        }
-
-        .disease-item:hover .disease-arrow svg { color: white; }
-
-        /* Alert Section */
+        /* ===== Alertas ===== */
         .alert-section {
-            padding: 5rem 2rem;
+            padding: 4.5rem 2rem;
             background: linear-gradient(135deg, #fff1f2 0%, #fef2f2 50%, #fef3c7 100%);
         }
-
-        .alert-container {
-            max-width: 1240px;
-            margin: 0 auto;
-        }
+        .alert-container { max-width: 1240px; margin: 0 auto; }
 
         .alert-box {
-            background: white;
+            background: #fff;
             border-radius: var(--radius);
-            padding: 3rem;
+            padding: 2.75rem;
             box-shadow: var(--shadow);
-            border-left: 5px solid var(--rose);
+            border-left: 5px solid var(--rose-dot);
         }
 
         .alert-header {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
         }
-
         .alert-header-icon {
             width: 56px; height: 56px;
             background: var(--rose-light);
@@ -945,74 +870,133 @@
             justify-content: center;
             flex-shrink: 0;
         }
-
-        .alert-header-icon svg {
-            width: 28px; height: 28px;
-            color: var(--rose);
-        }
-
+        .alert-header-icon svg { width: 28px; height: 28px; color: var(--rose); }
         .alert-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.75rem;
+            line-height: 1.25;
         }
+        .alert-header p { color: var(--text-light); font-size: 1rem; }
 
-        .alert-header p {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .alert-subtitle {
+            font-size: 1.1875rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
+        .alert-subtitle.urgent { color: var(--rose); }
+        .alert-subtitle.scheduled { color: var(--primary); }
 
         .alert-grid {
+            list-style: none;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.9rem;
         }
 
         .alert-item {
             display: flex;
             align-items: flex-start;
             gap: 0.8rem;
-            padding: 1.2rem;
+            padding: 1.1rem 1.2rem;
             background: var(--bg);
             border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .alert-item:hover {
-            background: var(--rose-light);
-            transform: scale(1.02);
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         .alert-dot {
             width: 10px; height: 10px;
             border-radius: 50%;
-            background: var(--rose);
+            background: var(--rose-dot);
             flex-shrink: 0;
-            margin-top: 0.4rem;
-            animation: pulse 2s ease-in-out infinite;
+            margin-top: 0.45rem;
         }
+        .alert-dot.blue { background: var(--primary); animation: none; }
+        .alert-item.scheduled-item .alert-dot { animation: none; }
+        .alert-item.urgent-item .alert-dot { animation: pulse 2s ease-in-out infinite; }
 
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.4; }
         }
 
-        .alert-item span {
-            font-size: 0.95rem;
-            font-weight: 500;
+        .alert-item span { font-size: 1rem; font-weight: 500; }
+
+        .alert-note {
+            margin-top: 1.75rem;
+            padding: 1rem 1.25rem;
+            background: var(--accent-light);
+            border-radius: 12px;
+            color: #92400e;
+            font-size: 0.9375rem;
+            font-weight: 600;
         }
 
-        /* Exams Section */
-        .exams-section {
-            padding: 5rem 2rem;
-            max-width: 1240px;
-            margin: 0 auto;
+        /* Caixa Acanthamoeba */
+        .acanthamoeba-box {
+            margin-top: 1.75rem;
+            border: 2px solid rgba(225,29,72,0.35);
+            background: #fffafb;
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+        }
+        .acanthamoeba-box h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--rose);
+            margin-bottom: 0.6rem;
+            line-height: 1.35;
+        }
+        .acanthamoeba-box > p {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.65;
+            margin-bottom: 1rem;
+        }
+        .acanthamoeba-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-bottom: 1.1rem;
+        }
+        .acanthamoeba-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            font-size: 0.9875rem;
+            line-height: 1.6;
+        }
+        .acanthamoeba-list li::before {
+            content: '!';
+            flex-shrink: 0;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: var(--rose-light);
+            color: var(--rose);
+            font-weight: 700;
+            font-size: 0.8125rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0.15rem;
+        }
+        .acanthamoeba-box .final-note {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--rose);
+            background: var(--rose-light);
+            border-radius: 10px;
+            padding: 0.85rem 1.1rem;
+            line-height: 1.55;
         }
 
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
+        /* ===== Exames ===== */
+        .exams-section { padding: 4.5rem 2rem; max-width: 1240px; margin: 0 auto; }
 
+        .timeline { position: relative; padding-left: 3rem; }
         .timeline::before {
             content: '';
             position: absolute;
@@ -1024,84 +1008,162 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 2rem;
-            padding: 1.8rem 2rem;
-            background: white;
+            margin-bottom: 1.75rem;
+            padding: 1.7rem 2rem;
+            background: #fff;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            transition: all 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .timeline-item:hover {
-            transform: translateX(8px);
+            transform: translateX(6px);
             box-shadow: var(--shadow-hover);
         }
-
         .timeline-item::before {
             content: '';
             position: absolute;
             left: -2.45rem; top: 2rem;
             width: 18px; height: 18px;
             border-radius: 50%;
-            background: white;
+            background: #fff;
             border: 4px solid var(--primary);
             box-shadow: 0 0 0 4px var(--primary-light);
         }
-
         .timeline-item:nth-child(2)::before { border-color: var(--teal); box-shadow: 0 0 0 4px var(--teal-light); }
         .timeline-item:nth-child(3)::before { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-light); }
         .timeline-item:nth-child(4)::before { border-color: var(--purple); box-shadow: 0 0 0 4px var(--purple-light); }
-        .timeline-item:nth-child(5)::before { border-color: var(--rose); box-shadow: 0 0 0 4px var(--rose-light); }
+        .timeline-item:nth-child(5)::before { border-color: var(--indigo); box-shadow: 0 0 0 4px var(--indigo-light); }
+        .timeline-item:nth-child(6)::before { border-color: var(--rose-dot); box-shadow: 0 0 0 4px var(--rose-light); }
 
         .timeline-age {
             display: inline-block;
             padding: 0.3rem 0.9rem;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             font-weight: 700;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.55rem;
             background: var(--primary-light);
             color: var(--primary);
         }
-
         .timeline-item:nth-child(2) .timeline-age { background: var(--teal-light); color: var(--teal); }
         .timeline-item:nth-child(3) .timeline-age { background: var(--accent-light); color: #b45309; }
         .timeline-item:nth-child(4) .timeline-age { background: var(--purple-light); color: var(--purple); }
-        .timeline-item:nth-child(5) .timeline-age { background: var(--rose-light); color: var(--rose); }
+        .timeline-item:nth-child(5) .timeline-age { background: var(--indigo-light); color: var(--indigo); }
+        .timeline-item:nth-child(6) .timeline-age { background: var(--rose-light); color: var(--rose); }
 
         .timeline-item h3 {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
         }
-
         .timeline-item p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-light);
+            line-height: 1.65;
+            max-width: 75ch;
         }
 
         .timeline-freq {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.45rem;
             margin-top: 0.8rem;
-            padding: 0.3rem 0.8rem;
+            padding: 0.35rem 0.85rem;
             background: var(--bg);
             border-radius: 8px;
-            font-size: 0.8rem;
+            font-size: 0.875rem;
             font-weight: 600;
             color: var(--text);
         }
 
-        /* Newsletter / Captura de Leads */
-        .newsletter {
-            padding: 5rem 2rem;
+        .exams-note {
+            margin-top: 1.5rem;
+            padding: 1.1rem 1.4rem;
+            background: var(--primary-light);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            color: var(--primary-dark);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+
+        /* ===== Referências ===== */
+        .references-section {
+            padding: 4.5rem 2rem;
+            background: #fff;
+        }
+        .references-container { max-width: 900px; margin: 0 auto; }
+
+        .references-intro {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 62ch;
+            margin: 0 auto 2.25rem;
+            font-size: 1rem;
+        }
+
+        .ref-group {
+            border: 1px solid rgba(0,0,0,0.07);
+            border-radius: 14px;
+            margin-bottom: 1rem;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .ref-group summary {
+            cursor: pointer;
+            padding: 1.1rem 1.4rem;
+            font-weight: 700;
+            font-size: 1.0625rem;
+            color: var(--primary-dark);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .ref-group summary::-webkit-details-marker { display: none; }
+        .ref-group summary::after {
+            content: '+';
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--primary);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .ref-group[open] summary::after { transform: rotate(45deg); }
+        .ref-group summary:hover { background: var(--primary-light); }
+
+        .ref-list {
+            list-style: none;
+            padding: 0.5rem 1.4rem 1.2rem;
+        }
+        .ref-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.08);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+        .ref-list li:last-child { border-bottom: none; }
+        .ref-list strong { color: var(--text); }
+        .ref-list a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            word-break: break-word;
+        }
+        .ref-list a:hover { text-decoration: underline; }
+
+        /* ===== Continue aprendendo ===== */
+        .learn-section {
+            padding: 4.5rem 2rem;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             position: relative;
             overflow: hidden;
         }
-
-        .newsletter::before {
+        .learn-section::before {
             content: '';
             position: absolute;
             top: -50%; right: -20%;
@@ -1109,240 +1171,178 @@
             background: rgba(255,255,255,0.05);
             border-radius: 50%;
         }
-
-        .newsletter-content {
-            max-width: 600px;
+        .learn-container {
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
             position: relative;
             z-index: 1;
         }
-
-        .newsletter h2 {
+        .learn-header { text-align: center; margin-bottom: 2.5rem; }
+        .learn-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: white;
-            margin-bottom: 1rem;
+            font-size: clamp(1.625rem, 3.2vw, 2.125rem);
+            color: #fff;
+            margin-bottom: 0.6rem;
+        }
+        .learn-header p { color: rgba(255,255,255,0.85); max-width: 55ch; margin: 0 auto; }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.4rem;
         }
 
-        .newsletter-content p.lead-text {
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
-
-        .newsletter-form {
+        .learn-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.75rem;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
-            max-width: 460px;
-            margin: 0 auto;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.15);
         }
-
-        .newsletter-form input[type="text"],
-        .newsletter-form input[type="email"],
-        .newsletter-form input[type="tel"] {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            background: rgba(255,255,255,0.95);
-            color: var(--text);
-            transition: box-shadow 0.3s;
+        .learn-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.22);
         }
-
-        .newsletter-form input:focus {
-            box-shadow: 0 0 0 3px rgba(245,158,11,0.5);
+        .learn-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
         }
-
-        .consent-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.6rem;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.75);
-            text-align: left;
-            cursor: pointer;
-            line-height: 1.5;
+        .learn-card p {
+            font-size: 0.9375rem;
+            color: var(--text-light);
+            line-height: 1.6;
         }
-
-        .consent-label input {
-            margin-top: 3px;
-            accent-color: var(--accent);
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            cursor: pointer;
+        .learn-link {
+            margin-top: auto;
+            padding-top: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9375rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
         }
+        .learn-card:hover .learn-link { text-decoration: underline; }
 
-        .newsletter-form button {
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .newsletter-form button:hover {
-            background: #d97706;
-            transform: translateY(-2px);
-        }
-
-        #submitBtn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        #subscribeMsg {
-            margin-top: 1.2rem;
-            font-size: 0.95rem;
-            display: none;
-            font-weight: 600;
-        }
-
-        .form-note {
-            margin-top: 1rem;
-            font-size: 0.78rem;
-            color: rgba(255,255,255,0.55);
-        }
-
-        /* Footer */
+        /* ===== Footer ===== */
         footer {
             background: #0f172a;
-            color: rgba(255,255,255,0.7);
-            padding: 4rem 2rem 2rem;
+            color: rgba(255,255,255,0.75);
+            padding: 3.5rem 2rem 2rem;
         }
 
         .footer-content {
             max-width: 1240px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1.2fr;
             gap: 3rem;
         }
 
-        .footer-brand .logo {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
+        .footer-brand .logo { color: #fff; margin-bottom: 1rem; }
         .footer-brand .logo-icon {
-            background: radial-gradient(circle at center, #0a0a0a 18%, #1a3a5c 20%, #2a6a9c 35%, #5a9ac0 50%, #8ab8d8 65%, #c4a060 80%, #8a7a5a 95%);
             box-shadow: 0 0 0 2px rgba(255,255,255,0.2), inset 0 0 8px rgba(0,0,0,0.3);
         }
 
-        .footer-brand p {
-            font-size: 0.9rem;
-            line-height: 1.8;
+        .academic-id {
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            margin-bottom: 1.1rem;
+        }
+        .academic-id strong { color: #fff; }
+
+        .disclaimer {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.82);
         }
 
         .footer-column h4 {
-            color: white;
+            color: #fff;
             font-size: 1rem;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.1rem;
         }
-
         .footer-column ul { list-style: none; }
-        .footer-column ul li { margin-bottom: 0.7rem; }
-
+        .footer-column ul li { margin-bottom: 0.65rem; }
         .footer-column ul li a {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.72);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.9375rem;
             transition: color 0.3s;
         }
-
         .footer-column ul li a:hover { color: var(--accent); }
+        .footer-column p { font-size: 0.9375rem; line-height: 1.7; }
 
         .footer-bottom {
             max-width: 1240px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
+            margin: 2.5rem auto 0;
+            padding-top: 1.75rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.875rem;
         }
 
-        .social-links {
-            display: flex;
-            gap: 0.8rem;
-        }
-
-        .social-links a {
-            width: 38px; height: 38px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Animations */
+        /* ===== Animações de entrada ===== */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s ease;
+            transform: translateY(26px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Mobile */
+        /* ===== Menu mobile ===== */
         .mobile-nav {
             display: none;
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: white;
+            background: #fff;
             z-index: 999;
             padding: 5rem 2rem 2rem;
             flex-direction: column;
             align-items: center;
-            gap: 2rem;
+            gap: 1.75rem;
         }
         .mobile-nav.active { display: flex; }
         .mobile-nav a {
-            font-size: 1.2rem;
+            font-size: 1.1875rem;
             text-decoration: none;
             color: var(--text);
             font-weight: 600;
         }
+        .mobile-nav a:hover { color: var(--primary); }
         .mobile-close {
             position: absolute;
-            top: 1.5rem; right: 2rem;
+            top: 1.4rem; right: 1.6rem;
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 1.5rem;
+            padding: 0.5rem;
             color: var(--text);
         }
+        .mobile-close svg { width: 26px; height: 26px; }
 
         .scroll-top {
             position: fixed;
             bottom: 2rem; right: 2rem;
             width: 48px; height: 48px;
             background: var(--primary);
-            color: white;
+            color: #fff;
             border: none;
             border-radius: 50%;
             cursor: pointer;
@@ -1358,804 +1358,946 @@
         .scroll-top.visible { opacity: 1; transform: translateY(0); }
         .scroll-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
 
-        /* Responsive */
+        /* ===== Movimento reduzido ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001s !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001s !important;
+            }
+            .fade-in { opacity: 1; transform: none; }
+        }
+
+        /* ===== Responsivo ===== */
         @media (max-width: 900px) {
             .nav-links { display: none; }
             .mobile-menu { display: block; }
-            .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-text p { margin: 0 auto 2rem; }
-            .hero-buttons { justify-content: center; }
-            .hero-stats { justify-content: center; flex-wrap: wrap; }
-            .hero-visual { order: -1; }
-            .iris-container { width: 280px; height: 280px; }
-            .feature-box { grid-template-columns: 1fr; padding: 2rem; }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2.75rem 1.5rem 2.5rem;
+            }
+            .hero-visual { order: 2; }
+            .hero-pillars { order: 3; grid-template-columns: 1fr; }
+            .hero-text { order: 1; }
+            .iris-container { width: min(240px, 66vw); height: min(240px, 66vw); }
+
+            .feature-box { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; }
             .feature-steps { flex-direction: column; }
-            .disease-item { grid-template-columns: auto 1fr; }
-            .disease-arrow { display: none; }
-            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-            .section-header h2 { font-size: 2rem; }
-            .care-grid { grid-template-columns: 1fr; }
-            .timeline { padding-left: 2.5rem; }
+
+            .disease-item { grid-template-columns: 1fr; gap: 1rem; }
+
+            .learn-grid { grid-template-columns: 1fr; }
+
+            .footer-content { grid-template-columns: 1fr; gap: 2.25rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+
+            .section, .complementary-section, .diseases-section,
+            .alert-section, .exams-section, .references-section, .learn-section {
+                padding: 3.25rem 1.25rem;
+            }
+
+            .care-grid, .tips-list { grid-template-columns: 1fr; }
+            .timeline { padding-left: 2.25rem; }
+            .timeline-item::before { left: -2.05rem; }
             .complementary-intro { flex-direction: column; text-align: center; }
             .category-header { flex-direction: column; text-align: center; }
-            .tips-list { grid-template-columns: 1fr; }
-            .tip-item { flex-direction: column; align-items: flex-start; }
+            .alert-box { padding: 1.75rem; }
+            .acanthamoeba-box { padding: 1.4rem; }
+            .alert-header { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 400px) {
+            .hero-text h1 { font-size: 2rem; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .btn-primary, .btn-secondary { justify-content: center; }
         }
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+
     <!-- Header -->
     <header id="header">
-        <nav>
-            <a href="#" class="logo">
-                <div class="logo-icon"></div>
+        <nav aria-label="Navegação principal">
+            <a href="#inicio" class="logo" aria-label="De Olho na Visão — voltar ao início">
+                <div class="logo-icon" aria-hidden="true"></div>
                 De olho na visão
             </a>
             <ul class="nav-links">
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#cuidados">Cuidados</a></li>
-                <li><a href="#complementares">Complementares</a></li>
                 <li><a href="#doencas">Doenças</a></li>
-                <li><a href="#alertas">Alertas</a></li>
+                <li><a href="#alertas">Sinais de alerta</a></li>
                 <li><a href="#exames">Exames</a></li>
-                <li><a href="#newsletter" class="nav-cta">Inscreva-se</a></li>
+                <li><a href="#referencias">Referências</a></li>
             </ul>
-            <button class="mobile-menu" onclick="toggleMobileMenu()">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button class="mobile-menu" id="menuBtn" aria-label="Abrir menu de navegação" aria-controls="mobileNav" aria-expanded="false">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
         </nav>
     </header>
 
-    <!-- Mobile Nav -->
-    <div class="mobile-nav" id="mobileNav">
-        <button class="mobile-close" onclick="toggleMobileMenu()">✕</button>
-        <a href="#inicio" onclick="toggleMobileMenu()">Início</a>
-        <a href="#cuidados" onclick="toggleMobileMenu()">Cuidados</a>
-        <a href="#complementares" onclick="toggleMobileMenu()">Complementares</a>
-        <a href="#doencas" onclick="toggleMobileMenu()">Doenças</a>
-        <a href="#alertas" onclick="toggleMobileMenu()">Alertas</a>
-        <a href="#exames" onclick="toggleMobileMenu()">Exames</a>
-        <a href="#newsletter" onclick="toggleMobileMenu()">Inscreva-se</a>
+    <!-- Menu mobile -->
+    <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+        <button class="mobile-close" id="menuClose" aria-label="Fechar menu">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <a href="#inicio">Início</a>
+        <a href="#cuidados">Cuidados</a>
+        <a href="#complementares">Cuidados complementares</a>
+        <a href="#lentes">Lentes de contato</a>
+        <a href="#doencas">Doenças</a>
+        <a href="#alertas">Sinais de alerta</a>
+        <a href="#exames">Exames</a>
+        <a href="#referencias">Referências</a>
     </div>
 
-    <!-- Hero -->
-    <section class="hero" id="inicio">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <div class="tag">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                    Saúde Visual em Foco
+    <main id="conteudo">
+        <!-- Abertura -->
+        <section class="hero" id="inicio" aria-labelledby="titulo-principal">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-eyebrow">Um guia educativo sobre saúde visual</p>
+                    <h1 id="titulo-principal">Cuide bem da sua <span class="highlight">visão</span></h1>
+                    <p>A maioria das doenças oculares graves evolui de forma silenciosa. Este guia reúne hábitos de prevenção, cuidados com lentes de contato, sinais de alerta e orientações sobre exames para ajudar você a enxergar bem em todas as fases da vida.</p>
+                    <div class="hero-buttons">
+                        <a href="#cuidados" class="btn-primary">
+                            Começar a leitura
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        <a href="#alertas" class="btn-secondary">Ver sinais de alerta</a>
+                    </div>
                 </div>
-                <h1>Cuide bem da sua <span class="highlight">visão</span></h1>
-                <p>A maioria das doenças oculares graves se desenvolve de forma silenciosa. Descubra como pequenos hábitos diários e exames periódicos podem proteger sua visão por toda a vida.</p>
-                <div class="hero-buttons">
-                    <a href="#cuidados" class="btn-primary">
-                        Começar a Cuidar
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <div class="hero-visual">
+                    <div class="iris-container" aria-hidden="true">
+                        <div class="iris-main"></div>
+                        <div class="iris-ring iris-ring-1"></div>
+                        <div class="iris-ring iris-ring-2"></div>
+                        <div class="iris-ring iris-ring-3"></div>
+                        <div class="iris-glow"></div>
+                    </div>
+                </div>
+                <div class="hero-pillars">
+                    <div class="pillar">
+                        <span class="pillar-title">Prevenção</span>
+                        <span class="pillar-text">Pequenos hábitos fazem diferença.</span>
+                    </div>
+                    <div class="pillar">
+                        <span class="pillar-title">Pausas</span>
+                        <span class="pillar-text">Descanse os olhos durante o uso de telas.</span>
+                    </div>
+                    <div class="pillar">
+                        <span class="pillar-title">Acompanhamento</span>
+                        <span class="pillar-text">Exames conforme suas necessidades.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cuidados diários -->
+        <section class="section" id="cuidados" aria-labelledby="h2-cuidados">
+            <div class="section-header fade-in">
+                <span class="section-tag tag-teal">🛡️ Cuidados diários</span>
+                <h2 id="h2-cuidados">Prevenção no dia a dia</h2>
+                <p>Bons hábitos cotidianos protegem os olhos de fatores de risco e ajudam a prevenir diversas condições oculares.</p>
+            </div>
+
+            <div class="care-grid">
+                <article class="care-card fade-in" style="--card-color: #0f766e; --icon-bg: #ccfbf1; --icon-color: #0f766e;">
+                    <div class="care-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    </div>
+                    <h3>Proteção contra o sol</h3>
+                    <p>Use óculos de sol com proteção de 99% a 100% contra raios UVA e UVB (ou selo UV400), mesmo em dias nublados, e reforce com chapéus de aba larga. A exposição cumulativa à radiação ultravioleta ao longo da vida está associada ao desenvolvimento de catarata, e essa combinação é uma medida preventiva recomendada.</p>
+                    <span class="highlight">Proteção 99–100% UV ou UV400</span>
+                </article>
+
+                <article class="care-card fade-in" style="--card-color: #b45309; --icon-bg: #fef3c7; --icon-color: #b45309;">
+                    <div class="care-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                    </div>
+                    <h3>Alimentação e hidratação</h3>
+                    <p>Mantenha uma alimentação variada, rica em vitaminas A, C e E, luteína, zeaxantina, zinco e ômega-3: folhas verdes escuras, frutas cítricas, oleaginosas, leguminosas e peixes como salmão e sardinha. Esses nutrientes participam da proteção da retina contra o estresse oxidativo. Beba água ao longo do dia. Atenção: não há evidências de alta qualidade de que suplementos em altas doses previnam doenças como a catarata — prefira os nutrientes dos alimentos.</p>
+                    <span class="highlight">Prato colorido e boa hidratação</span>
+                </article>
+
+                <article class="care-card fade-in" style="--card-color: #be123c; --icon-bg: #ffe4e6; --icon-color: #be123c;">
+                    <div class="care-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
+                    </div>
+                    <h3>Mãos, olhos e higiene</h3>
+                    <p>Evite coçar ou esfregar os olhos com as mãos sujas: isso pode causar irritação e transmitir germes. Quem usa lentes de contato precisa de cuidados ainda mais rigorosos, pois elas são o principal fator de risco para infecções graves da córnea. Veja o <a href="#lentes">guia de uso seguro de lentes</a>.</p>
+                    <span class="highlight">Lentes exigem atenção especial</span>
+                </article>
+
+                <article class="care-card fade-in" style="--card-color: #7c3aed; --icon-bg: #ede9fe; --icon-color: #7c3aed;">
+                    <div class="care-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <h3>Ambiente, iluminação e pausas</h3>
+                    <p>Mantenha iluminação adequada ao ler ou trabalhar, evitando ambientes muito escuros ou com reflexos excessivos. Faça pausas regulares em atividades que exigem esforço visual prolongado, como leitura e trabalho no computador.</p>
+                    <span class="highlight">Pausas de 5 a 10 minutos por hora</span>
+                </article>
+            </div>
+
+            <!-- Regra 20-20-20 -->
+            <div class="feature-box fade-in">
+                <div class="feature-text">
+                    <h3>Regra 20-20-20: pausas para o uso de telas</h3>
+                    <p>A cada 20 minutos usando telas, olhe por 20 segundos para algo a cerca de 6 metros (20 pés) de distância. Isso ajuda a reduzir o cansaço visual. Aproveite para piscar conscientemente: esse gesto simples mantém a lubrificação dos olhos.</p>
+                    <p class="feature-note">Pausas regulares são recomendadas por entidades como a Academia Americana de Oftalmologia para conforto e ergonomia visual. A superioridade do intervalo exato de 20 minutos sobre outros formatos de pausa não está comprovada de maneira conclusiva — o importante é criar o hábito de descansar os olhos.</p>
+                    <div class="feature-steps">
+                        <div class="feature-step">
+                            <div class="num">20</div>
+                            <div class="label">minutos de tela</div>
+                        </div>
+                        <div class="feature-step">
+                            <div class="num">20</div>
+                            <div class="label">pés de distância</div>
+                        </div>
+                        <div class="feature-step">
+                            <div class="num">20</div>
+                            <div class="label">segundos de pausa</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-visual">
+                    <svg viewBox="0 0 300 280" width="300" fill="none" aria-hidden="true">
+                        <rect x="50" y="40" width="200" height="130" rx="10" fill="white" opacity="0.95"/>
+                        <rect x="60" y="50" width="180" height="110" rx="5" fill="#dbeafe"/>
+                        <rect x="75" y="65" width="80" height="6" rx="3" fill="#1e5f8e" opacity="0.6"/>
+                        <rect x="75" y="80" width="150" height="4" rx="2" fill="#1e5f8e" opacity="0.3"/>
+                        <rect x="75" y="90" width="140" height="4" rx="2" fill="#1e5f8e" opacity="0.3"/>
+                        <rect x="75" y="100" width="120" height="4" rx="2" fill="#1e5f8e" opacity="0.3"/>
+                        <rect x="75" y="115" width="60" height="30" rx="4" fill="#f59e0b" opacity="0.7"/>
+                        <rect x="130" y="170" width="40" height="15" fill="white" opacity="0.9"/>
+                        <rect x="110" y="185" width="80" height="6" rx="3" fill="white" opacity="0.9"/>
+                        <circle cx="240" cy="220" r="35" fill="white" opacity="0.95"/>
+                        <circle cx="240" cy="220" r="30" fill="none" stroke="#f59e0b" stroke-width="3"/>
+                        <line x1="240" y1="220" x2="240" y2="200" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="240" y1="220" x2="255" y2="225" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="240" cy="220" r="2" fill="#1e293b"/>
+                        <g transform="translate(40, 220)">
+                            <ellipse cx="30" cy="20" rx="25" ry="15" fill="white" stroke="#1e5f8e" stroke-width="2"/>
+                            <circle cx="38" cy="20" r="8" fill="#1e5f8e"/>
+                            <circle cx="40" cy="18" r="2" fill="white"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cuidados complementares -->
+        <section class="complementary-section" id="complementares" aria-labelledby="h2-complementares">
+            <div class="complementary-container">
+                <div class="section-header fade-in">
+                    <span class="section-tag tag-indigo">✨ Cuidados complementares</span>
+                    <h2 id="h2-complementares">Vá além do básico</h2>
+                    <p>Mais cuidados preventivos, organizados por áreas, para fortalecer a saúde dos seus olhos a longo prazo.</p>
+                </div>
+
+                <div class="complementary-intro fade-in">
+                    <div class="complementary-intro-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <h3>Uma abordagem completa para a sua visão</h3>
+                        <p>Estes cuidados complementam os hábitos anteriores e formam, juntos, uma barreira robusta de proteção ocular.</p>
+                    </div>
+                </div>
+
+                <!-- Estilo de vida -->
+                <div class="category-block fade-in">
+                    <div class="category-header">
+                        <div class="category-emoji" style="background: #ede9fe;" aria-hidden="true">🌙</div>
+                        <div>
+                            <h3>Estilo de vida e hábitos diários</h3>
+                            <p class="cat-subtitle">Rotinas que impactam diretamente a saúde ocular</p>
+                        </div>
+                    </div>
+                    <div class="tips-list">
+                        <article class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Sono em dia</h4>
+                                <p>Durma cerca de 7 horas por noite e procure tratar distúrbios do sono, como insônia e apneia: o sono adequado contribui para a saúde geral dos olhos. As necessidades variam entre pessoas, mas noites constantemente insuficientes estão associadas a mais ressecamento e fadiga visual.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Exercício aeróbico sim, esforço intenso com cautela</h4>
+                                <p>Praticar atividade física aeróbica com regularidade pode estar associado a menor risco de certas doenças oculares, como a catarata. Se você tem glaucoma ou alto risco para a doença, evite exercícios isométricos (como levantamento de peso com esforço intenso) sem orientação médica: esse tipo de esforço pode elevar a pressão dentro do olho.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Não fume — e pare se fuma</h4>
+                                <p>O tabagismo é um fator de risco comprovado para diversas doenças oculares, incluindo catarata e degeneração macular, e abandonar o hábito reduz esse risco. Evite também a exposição à fumaça do tabaco.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Crianças ao ar livre</h4>
+                                <p>Incentive crianças e adolescentes a passar tempo ao ar livre todos os dias — cerca de 90 minutos é uma boa referência. Esse hábito está associado a menor risco de desenvolver miopia, como reforçam estudos como o ensaio clínico publicado no JAMA em 2015. Não existe um "mínimo mágico": o que importa é a constância.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Modere o álcool</h4>
+                                <p>O consumo excessivo de álcool desidrata o organismo e pode prejudicar a saúde geral, incluindo a ocular. A moderação é uma escolha protetora para o corpo inteiro.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Ergonomia -->
+                <div class="category-block fade-in">
+                    <div class="category-header">
+                        <div class="category-emoji" style="background: #e0e7ff;" aria-hidden="true">💻</div>
+                        <div>
+                            <h3>Ergonomia e uso de telas</h3>
+                            <p class="cat-subtitle">Ajustes simples que reduzem o desconforto visual</p>
+                        </div>
+                    </div>
+                    <div class="tips-list">
+                        <article class="tip-item" style="--tip-color: #4338ca; --tip-bg: #e0e7ff;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Ajuste brilho, contraste e reflexos</h4>
+                                <p>Regule o brilho e o contraste das telas de acordo com a luz do ambiente, evitando ambientes muito escuros ou com reflexos excessivos. Telas muito brilhantes ou escuras em relação ao entorno causam desconforto e fadiga visual.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #4338ca; --tip-bg: #e0e7ff;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Mantenha distância segura</h4>
+                                <p>Para monitores, a referência prática é cerca de um braço de distância (aproximadamente 50 a 70 cm). Para celulares e tablets, evite aproximar-se a menos de 30 cm dos olhos.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #4338ca; --tip-bg: #e0e7ff;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Aumente o tamanho do texto</h4>
+                                <p>Amplie as letras em dispositivos digitais quando necessário, especialmente se notar dificuldade para enxergar textos pequenos. Isso reduz o esforço excessivo dos olhos durante a leitura.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Nutrição -->
+                <div class="category-block fade-in">
+                    <div class="category-header">
+                        <div class="category-emoji" style="background: #fef3c7;" aria-hidden="true">🥗</div>
+                        <div>
+                            <h3>Nutrição específica para os olhos</h3>
+                            <p class="cat-subtitle">Alimentos que nutrem e protegem a visão</p>
+                        </div>
+                    </div>
+                    <div class="tips-list">
+                        <article class="tip-item" style="--tip-color: #b45309; --tip-bg: #fef3c7;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Dieta rica em nutrientes</h4>
+                                <p>Priorize vitaminas C e E, zinco, luteína, zeaxantina e ômega-3. Boas fontes: frutas cítricas, oleaginosas, leguminosas, folhas verdes escuras (couve, espinafre) e peixes gordurosos (salmão, sardinha).</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #b45309; --tip-bg: #fef3c7;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Padrão mediterrâneo</h4>
+                                <p>A dieta mediterrânea — rica em peixes, vegetais e azeite — aparece em estudos observacionais associada a menor risco de progressão da degeneração macular relacionada à idade. Ela é um padrão alimentar saudável, não um tratamento ou garantia de prevenção.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #b45309; --tip-bg: #fef3c7;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Suplementos: só com indicação (fórmula AREDS2)</h4>
+                                <p>Os estudos AREDS e AREDS2, do National Eye Institute, mostraram que a fórmula específica de suplementos pode retardar a progressão da DMRI em estágios intermediário ou avançado. Eles não previnem a doença e não são indicados para pessoas saudáveis ou crianças. Também não há evidências de alta qualidade de que suplementos em altas doses previnam a catarata.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Higiene -->
+                <div class="category-block fade-in">
+                    <div class="category-header">
+                        <div class="category-emoji" style="background: #ffe4e6;" aria-hidden="true">🧼</div>
+                        <div>
+                            <h3>Higiene e cuidados específicos</h3>
+                            <p class="cat-subtitle">Detalhes que fazem toda a diferença</p>
+                        </div>
+                    </div>
+                    <div class="tips-list">
+                        <article class="tip-item" style="--tip-color: #be123c; --tip-bg: #ffe4e6;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Atenção ao tempo seco</h4>
+                                <p>Use lágrimas artificiais em ambientes secos ou com baixa umidade, ou sempre que sentir os olhos ressecados. Em caso de sintomas persistentes, procure orientação profissional.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #be123c; --tip-bg: #ffe4e6;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Use os óculos corretamente</h4>
+                                <p>Use óculos de grau de acordo com a prescrição mais atualizada do seu oftalmologista ou optometrista. Deixar de usá-los ou usar graduação desatualizada pode causar dores de cabeça e cansaço visual.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #be123c; --tip-bg: #ffe4e6;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Mãos longe dos olhos</h4>
+                                <p>Evite coçar ou esfregar os olhos com as mãos sujas, pois isso pode causar irritação ou transmitir germes. Lave as mãos com frequência, especialmente antes de qualquer contato com a região dos olhos.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- NOVO: Lentes de contato -->
+                <div class="category-block fade-in" id="lentes">
+                    <div class="category-header">
+                        <div class="category-emoji" style="background: #ccfbf1;" aria-hidden="true">👁️</div>
+                        <div>
+                            <h3>Lentes de contato: guia de uso seguro</h3>
+                            <p class="cat-subtitle">Cuidados especiais para evitar infecções graves da córnea</p>
+                        </div>
+                    </div>
+                    <div class="tips-list">
+                        <article class="tip-item" style="--tip-color: #0f766e; --tip-bg: #ccfbf1;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Mãos lavadas e secas, sempre</h4>
+                                <p>Lave bem as mãos com água e sabão e seque-as antes de manusear as lentes de contato, sempre. O uso de lentes é o principal fator de risco para ceratite microbiana, uma infecção grave da córnea.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #0f766e; --tip-bg: #ccfbf1;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Não durma com as lentes</h4>
+                                <p>Dormir com lentes de contato aumenta em cerca de cinco vezes o risco de infecção da córnea em comparação ao uso apenas durante o dia. Só durma com elas se o oftalmologista orientar especificamente para isso.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #0f766e; --tip-bg: #ccfbf1;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c-4 5-7 8.5-7 12a7 7 0 0014 0c0-3.5-3-7-7-12z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Longe da água</h4>
+                                <p>Retire as lentes antes de tomar banho, nadar ou entrar em banheiras de hidromassagem. O contato com água de torneira ou piscina está associado à ceratite por Acanthamoeba, uma infecção grave da córnea.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #0f766e; --tip-bg: #ccfbf1;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Estojo e solução sem atalhos</h4>
+                                <p>Troque o estojo a cada 3 meses, pois ele acumula bactérias mesmo com limpeza regular. Nunca "complete" a solução usada com solução nova: use sempre solução fresca e enxágue o estojo com a própria solução.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #0f766e; --tip-bg: #ccfbf1;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Cronograma e uso individual</h4>
+                                <p>Siga o cronograma de troca das lentes (diária, quinzenal, mensal etc.) exatamente como prescrito e nunca compartilhe lentes de contato com outras pessoas.</p>
+                            </div>
+                        </article>
+
+                        <article class="tip-item" style="--tip-color: #0f766e; --tip-bg: #ccfbf1;">
+                            <div class="tip-item-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            </div>
+                            <div class="tip-item-content">
+                                <h4>Sinais que pedem atendimento imediato</h4>
+                                <p>Vermelhidão, dor, lacrimejamento, sensibilidade à luz, visão embaçada ou secreção durante o uso de lentes exigem avaliação oftalmológica imediata, com suspensão do uso até a liberação médica.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="complementary-footer fade-in">
+                    <div class="shield-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <h3>Uma barreira robusta para os seus olhos</h3>
+                    <p>Essas medidas, somadas aos cuidados diários e aos exames regulares, formam uma proteção completa para a saúde ocular a longo prazo. Cuide da sua visão todos os dias.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doenças -->
+        <section class="diseases-section" id="doencas" aria-labelledby="h2-doencas">
+            <div class="diseases-container">
+                <div class="section-header fade-in">
+                    <span class="section-tag tag-blue">🩺 Doenças oculares</span>
+                    <h2 id="h2-doencas">Principais condições e sinais</h2>
+                    <p>Conhecer as doenças mais comuns ajuda a identificar sinais precoces e a buscar ajuda no momento certo.</p>
+                </div>
+
+                <div class="disease-list">
+                    <article class="disease-item fade-in">
+                        <div class="disease-icon" style="background: #e8f4fc;">
+                            <svg fill="none" stroke="#1e5f8e" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        </div>
+                        <div class="disease-info">
+                            <h3>Catarata</h3>
+                            <p>Opacificação do cristalino, que leva a visão embaçada, sensibilidade à luz e dificuldade para enxergar à noite. A exposição cumulativa à radiação UV é um fator de risco associado, e o tratamento cirúrgico, quando indicado, costuma devolver a visão.</p>
+                        </div>
+                    </article>
+
+                    <article class="disease-item fade-in">
+                        <div class="disease-icon" style="background: #ccfbf1;">
+                            <svg fill="none" stroke="#0f766e" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div class="disease-info">
+                            <h3>Glaucoma</h3>
+                            <p>Danifica o nervo óptico, geralmente associado ao aumento da pressão intraocular. É perigoso porque costuma não apresentar sintomas nas fases iniciais, causando perda gradual da visão periférica. A detecção precoce depende de exames regulares.</p>
+                        </div>
+                    </article>
+
+                    <article class="disease-item fade-in">
+                        <div class="disease-icon" style="background: #fef3c7;">
+                            <svg fill="none" stroke="#b45309" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div class="disease-info">
+                            <h3>DMRI (Degeneração Macular Relacionada à Idade)</h3>
+                            <p>Afeta a região central da retina (mácula), comprometendo a visão necessária para ler e reconhecer rostos. Linhas retas podem parecer tortas. Em estágios específicos, suplementos com fórmula AREDS2 podem retardar a progressão, sempre com indicação médica.</p>
+                        </div>
+                    </article>
+
+                    <article class="disease-item fade-in">
+                        <div class="disease-icon" style="background: #ffe4e6;">
+                            <svg fill="none" stroke="#be123c" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                        </div>
+                        <div class="disease-info">
+                            <h3>Retinopatia diabética</h3>
+                            <p>Complicação do diabetes que danifica os vasos sanguíneos da retina. O controle rigoroso da glicemia e da pressão arterial reduz o risco de doenças da retina e de catarata. Pessoas com diabetes precisam de exames oftalmológicos periódicos, conforme o tipo da doença e o estágio da retinopatia.</p>
+                        </div>
+                    </article>
+
+                    <article class="disease-item fade-in">
+                        <div class="disease-icon" style="background: #ccfbf1;">
+                            <svg fill="none" stroke="#0f766e" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3c-4 5-7 8.5-7 12a7 7 0 0014 0c0-3.5-3-7-7-12z"/></svg>
+                        </div>
+                        <div class="disease-info">
+                            <h3>Ceratite (infecção da córnea)</h3>
+                            <p>Inflamação ou infecção da córnea, frequentemente relacionada ao uso de lentes de contato, ao contato com água ou a traumas. A ceratite por Acanthamoeba é uma forma grave e de difícil diagnóstico, que exige atendimento oftalmológico urgente.</p>
+                        </div>
+                    </article>
+
+                    <article class="disease-item fade-in">
+                        <div class="disease-icon" style="background: #ede9fe;">
+                            <svg fill="none" stroke="#7c3aed" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                        <div class="disease-info">
+                            <h3>Erros de refração</h3>
+                            <p>Incluem miopia, hipermetropia e astigmatismo, corrigíveis com óculos ou lentes. A presbiopia ("vista cansada") é a perda natural da capacidade de focar de perto, comum a partir dos 40 anos.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sinais de alerta -->
+        <section class="alert-section" id="alertas" aria-labelledby="h2-alertas">
+            <div class="alert-container">
+                <div class="alert-box fade-in">
+                    <div class="alert-header">
+                        <div class="alert-header-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                        <div>
+                            <h2 id="h2-alertas">Quando procurar ajuda</h2>
+                            <p>Alguns sinais exigem atendimento rápido; outros pedem uma avaliação programada. Saiba diferenciar.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="alert-subtitle urgent">Procure atendimento oftalmológico imediato se notar:</h3>
+                    <ul class="alert-grid">
+                        <li class="alert-item urgent-item"><div class="alert-dot" aria-hidden="true"></div><span>Perda súbita de visão em um ou ambos os olhos</span></li>
+                        <li class="alert-item urgent-item"><div class="alert-dot" aria-hidden="true"></div><span>Dor intensa no olho, com ou sem náuseas</span></li>
+                        <li class="alert-item urgent-item"><div class="alert-dot" aria-hidden="true"></div><span>Vermelhidão persistente, especialmente com dor ou baixa de visão</span></li>
+                        <li class="alert-item urgent-item"><div class="alert-dot" aria-hidden="true"></div><span>Flashes de luz ou aparecimento repentino de muitas "moscas volantes"</span></li>
+                        <li class="alert-item urgent-item"><div class="alert-dot" aria-hidden="true"></div><span>Sensação de cortina ou sombra escura no campo visual</span></li>
+                        <li class="alert-item urgent-item"><div class="alert-dot" aria-hidden="true"></div><span>Trauma ocular ou contato com substância química</span></li>
+                    </ul>
+
+                    <h3 class="alert-subtitle scheduled">Agende uma avaliação programada se perceber:</h3>
+                    <ul class="alert-grid">
+                        <li class="alert-item scheduled-item"><div class="alert-dot blue" aria-hidden="true"></div><span>Visão embaçada que piora aos poucos</span></li>
+                        <li class="alert-item scheduled-item"><div class="alert-dot blue" aria-hidden="true"></div><span>Irritação ou ressecamento persistente sem dor</span></li>
+                        <li class="alert-item scheduled-item"><div class="alert-dot blue" aria-hidden="true"></div><span>Sensibilidade frequente à luz</span></li>
+                        <li class="alert-item scheduled-item"><div class="alert-dot blue" aria-hidden="true"></div><span>Dificuldade para enxergar à noite</span></li>
+                        <li class="alert-item scheduled-item"><div class="alert-dot blue" aria-hidden="true"></div><span>Dificuldade nova para enxergar letras pequenas</span></li>
+                        <li class="alert-item scheduled-item"><div class="alert-dot blue" aria-hidden="true"></div><span>Linhas retas que parecem tortas</span></li>
+                    </ul>
+
+                    <p class="alert-note">Na dúvida, procure atendimento: a avaliação precoce é a melhor forma de evitar perdas de visão irreversíveis.</p>
+
+                    <!-- NOVO: destaque Acanthamoeba -->
+                    <div class="acanthamoeba-box">
+                        <h3>⚠️ Atenção especial para quem usa lentes de contato: ceratite por Acanthamoeba</h3>
+                        <p>Infecção séria da córnea causada por um micro-organismo presente na água e no solo, que afeta principalmente usuários de lentes de contato. Por ser de difícil diagnóstico e poder ser confundida com outras infecções, conheça os sinais:</p>
+                        <ul class="acanthamoeba-list">
+                            <li>Dor ocular intensa, muitas vezes desproporcional ao que aparenta no olho, associada a sensibilidade à luz e lacrimejamento.</li>
+                            <li>Vermelhidão persistente e piora progressiva da visão que não melhoram — ou até pioram — mesmo após uso de colírio antibiótico prescrito para uma suspeita de infecção bacteriana comum.</li>
+                            <li>Sintomas que se arrastam por semanas sem melhora, especialmente em quem usa lentes reutilizáveis, dorme com as lentes ou já teve contato das lentes com água de torneira, piscina ou banho.</li>
+                        </ul>
+                        <p class="final-note">Qualquer piora ou ausência de resposta ao tratamento inicial deve levar à reavaliação oftalmológica imediata, com suspensão do uso das lentes de contato até a liberação médica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exames -->
+        <section class="exams-section" id="exames" aria-labelledby="h2-exames">
+            <div class="section-header fade-in">
+                <span class="section-tag tag-purple">🗓️ Exames oftalmológicos</span>
+                <h2 id="h2-exames">Com que frequência avaliar a visão</h2>
+                <p>Muitas doenças oculares são silenciosas. O exame completo, com dilatação da pupila, permite examinar a retina e identificar sinais precoces, muitas vezes antes de haver sintomas.</p>
+            </div>
+
+            <div class="timeline">
+                <article class="timeline-item fade-in">
+                    <span class="timeline-age">Crianças e adolescentes</span>
+                    <h3>Triagens desde o nascimento</h3>
+                    <p>O teste do reflexo vermelho ("teste do olhinho") é feito ao nascimento. Ao longo da infância, avaliações com pediatras e oftalmologistas acompanham o desenvolvimento visual — e devem ser antecipadas se houver estrabismo, dificuldade escolar ou aproximação excessiva de objetos.</p>
+                    <div class="timeline-freq">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        Conforme orientação pediátrica e sinais de alerta
+                    </div>
+                </article>
+
+                <article class="timeline-item fade-in">
+                    <span class="timeline-age">Adultos até 40 anos</span>
+                    <h3>Avaliação de rotina sem fatores de risco</h3>
+                    <p>Para adultos sem sintomas e sem fatores de risco, a Academia Americana de Oftalmologia (AAO) indica exame completo a cada 5 a 10 anos. Usuários de lentes de contato e pessoas com sintomas devem ter revisões mais frequentes.</p>
+                    <div class="timeline-freq">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        A cada 5 a 10 anos (AAO)
+                    </div>
+                </article>
+
+                <article class="timeline-item fade-in">
+                    <span class="timeline-age">40 a 54 anos</span>
+                    <h3>Fase de atenção ao glaucoma e à presbiopia</h3>
+                    <p>A partir dos 40 anos, o risco de glaucoma e catarata aumenta e a presbiopia costuma se manifestar. A AAO recomenda exame completo a cada 2 a 4 anos para quem não tem fatores de risco.</p>
+                    <div class="timeline-freq">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        A cada 2 a 4 anos (AAO)
+                    </div>
+                </article>
+
+                <article class="timeline-item fade-in">
+                    <span class="timeline-age">55 a 64 anos</span>
+                    <h3>Monitoramento mais próximo</h3>
+                    <p>Nesta faixa, a recomendação da AAO é de exame completo a cada 1 a 3 anos, com medição da pressão intraocular e exame de fundo de olho, conforme avaliação individual.</p>
+                    <div class="timeline-freq">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        A cada 1 a 3 anos (AAO)
+                    </div>
+                </article>
+
+                <article class="timeline-item fade-in">
+                    <span class="timeline-age">65 anos ou mais</span>
+                    <h3>Acompanhamento regular</h3>
+                    <p>Para monitorar catarata, DMRI e glaucoma — principais causas de perda de visão nessa fase —, a AAO recomenda exame completo a cada 1 a 2 anos, ou em intervalos menores conforme orientação profissional.</p>
+                    <div class="timeline-freq">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        A cada 1 a 2 anos (AAO)
+                    </div>
+                </article>
+
+                <article class="timeline-item fade-in">
+                    <span class="timeline-age">Diabetes, hipertensão e histórico familiar</span>
+                    <h3>Exame com dilatação pelo menos uma vez por ano</h3>
+                    <p>Quem tem diabetes, hipertensão ou histórico familiar de doenças oculares deve fazer exame oftalmológico com dilatação da pupila pelo menos uma vez por ano. No diabetes tipo 1, o acompanhamento começa cerca de 5 anos após o diagnóstico; no tipo 2, já no momento do diagnóstico, pois a retinopatia pode estar presente desde o início. Controle rigoroso da glicemia e da pressão arterial reduz o risco de doenças da retina e de catarata.</p>
+                    <div class="timeline-freq">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Pelo menos 1x por ano (grupos de risco)
+                    </div>
+                </article>
+            </div>
+
+            <p class="exams-note fade-in">Os intervalos acima seguem as recomendações da Academia Americana de Oftalmologia (AAO, 2025) para pessoas sem sintomas ou fatores de risco, e as orientações do guia do projeto para grupos de risco. Eles são referências educativas: a necessidade individual varia com idade, sintomas, histórico familiar e condições clínicas.</p>
+        </section>
+
+        <!-- Referências -->
+        <section class="references-section" id="referencias" aria-labelledby="h2-referencias">
+            <div class="references-container">
+                <div class="section-header fade-in">
+                    <span class="section-tag tag-blue">📚 Fontes científicas</span>
+                    <h2 id="h2-referencias">Fontes científicas e referências</h2>
+                </div>
+                <p class="references-intro fade-in">As informações deste guia foram organizadas a partir de materiais públicos de instituições de referência em saúde ocular e do guia do próprio projeto ("Guia de Saúde Ocular para Pacientes"), fundamentado na literatura científica listada abaixo.</p>
+
+                <details class="ref-group fade-in">
+                    <summary>Telas, pausas e ergonomia visual</summary>
+                    <ul class="ref-list">
+                        <li><strong>American Academy of Ophthalmology.</strong> Computers, Digital Devices, and Eye Strain. 2024. Disponível em: <a href="https://www.aao.org/eye-health/tips-prevention/computer-usage" target="_blank" rel="noopener">aao.org/eye-health/tips-prevention/computer-usage</a></li>
+                        <li><strong>American Academy of Ophthalmology.</strong> Digital Devices and Your Eyes. 2026. Disponível em: <a href="https://www.aao.org/eye-health/tips-prevention/digital-devices-your-eyes" target="_blank" rel="noopener">aao.org/eye-health/tips-prevention/digital-devices-your-eyes</a></li>
+                    </ul>
+                </details>
+
+                <details class="ref-group fade-in">
+                    <summary>Exames oftalmológicos e frequência recomendada</summary>
+                    <ul class="ref-list">
+                        <li><strong>American Academy of Ophthalmology.</strong> Comprehensive Adult Medical Eye Evaluation — Preferred Practice Pattern. 2025. Disponível em: <a href="https://www.aao.org/education/preferred-practice-pattern/comprehensive-adult-medical-eye-evaluation-ppp" target="_blank" rel="noopener">aao.org/education/preferred-practice-pattern/comprehensive-adult-medical-eye-evaluation-ppp</a></li>
+                        <li><strong>American Academy of Ophthalmology.</strong> Eye Exam and Vision Testing Basics. 2024. Disponível em: <a href="https://www.aao.org/eye-health/tips-prevention/eye-exams-101" target="_blank" rel="noopener">aao.org/eye-health/tips-prevention/eye-exams-101</a></li>
+                        <li><strong>American Academy of Ophthalmology.</strong> Eye Health Information for Adults Over 65. 2025. Disponível em: <a href="https://www.aao.org/eye-health/tips-prevention/seniors" target="_blank" rel="noopener">aao.org/eye-health/tips-prevention/seniors</a></li>
+                    </ul>
+                </details>
+
+                <details class="ref-group fade-in">
+                    <summary>Lentes de contato e infecções da córnea</summary>
+                    <ul class="ref-list">
+                        <li><strong>Alkharashi, M., et al.</strong> "Medical Interventions for Acanthamoeba Keratitis." Cochrane Database of Systematic Reviews, 2015.</li>
+                        <li><strong>Alreshidi, S., et al.</strong> "Clinical Features and Diagnostic Challenges of Acanthamoeba Keratitis." PLoS One, 2023.</li>
+                        <li><strong>Carnt, N., and F. Stapleton.</strong> "Strategies for the Prevention of Contact Lens-Related Acanthamoeba Keratitis: A Review." Ophthalmic &amp; Physiological Optics, v. 36, n. 2, 2016.</li>
+                        <li><strong>Carnt, N., D. C. Minassian, and J. K. G. Dart.</strong> "Acanthamoeba Keratitis Risk Factors for Daily Wear Contact Lens Users: A Case-Control Study." Ophthalmology, 2023.</li>
+                        <li><strong>de Lacerda, A. G., and M. Lira.</strong> "Diagnostic and Clinical Differentiation of Acanthamoeba Keratitis." Ophthalmic &amp; Physiological Optics, 2021.</li>
+                        <li><strong>Durand, M. L., M. B. Barshak, and J. Chodosh.</strong> "Infectious Keratitis in 2021." JAMA, 2021.</li>
+                        <li><strong>Durand, M. L., M. B. Barshak, and L. Sobrin.</strong> "Eye Infections." New England Journal of Medicine, 2023.</li>
+                        <li><strong>Jacobs, D. S., N. A. Afshari, R. J. Bishop, et al.</strong> "Refractive Errors" (Preferred Practice Pattern, Contact Lens Care). American Academy of Ophthalmology, 2023.</li>
+                    </ul>
+                </details>
+
+                <details class="ref-group fade-in">
+                    <summary>Catarata, tabagismo e alimentação</summary>
+                    <ul class="ref-list">
+                        <li><strong>Chen, S. P., F. Woreta, and D. F. Chang.</strong> "Cataracts: A Review." JAMA, 17 jun. 2025.</li>
+                        <li><strong>Liu, Y. C., M. Wilkins, T. Kim, B. Malyugin, and J. S. Mehta.</strong> "Cataracts." The Lancet, 5 ago. 2017.</li>
+                        <li><strong>Miller, K. M., T. A. Oetting, J. P. Tweeten, et al.</strong> "Cataract in the Adult Eye" (Preferred Practice Pattern). American Academy of Ophthalmology, 2022.</li>
+                        <li><strong>Kai, J. Y., M. Zhou, D. L. Li, et al.</strong> "Smoking, Dietary Factors and Major Age-Related Eye Disorders: An Umbrella Review of Systematic Reviews and Meta-Analyses." British Journal of Ophthalmology, 18 dez. 2023.</li>
+                    </ul>
+                </details>
+
+                <details class="ref-group fade-in">
+                    <summary>Doenças oculares, sinais de alerta e suplementação</summary>
+                    <ul class="ref-list">
+                        <li><strong>National Eye Institute (NEI/NIH).</strong> Diabetic Retinopathy. 2025. Disponível em: <a href="https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/diabetic-retinopathy" target="_blank" rel="noopener">nei.nih.gov/eye-health-information/eye-conditions-and-diseases/diabetic-retinopathy</a></li>
+                        <li><strong>American Academy of Ophthalmology.</strong> What Are Floaters and Flashes? 2025. Disponível em: <a href="https://www.aao.org/eye-health/diseases/what-are-floaters-flashes" target="_blank" rel="noopener">aao.org/eye-health/diseases/what-are-floaters-flashes</a></li>
+                        <li><strong>National Eye Institute (NEI/NIH).</strong> AREDS2 Supplements for Age-Related Macular Degeneration (AMD). 2021. Disponível em: <a href="https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/age-related-macular-degeneration/nutritional-supplements-age-related-macular-degeneration" target="_blank" rel="noopener">nei.nih.gov (suplementos AREDS2)</a></li>
+                        <li><strong>National Eye Institute (NEI/NIH).</strong> Age-Related Eye Disease Studies (AREDS/AREDS2). Disponível em: <a href="https://www.nei.nih.gov/eye-health-information/clinical-trials/age-related-eye-disease-studies-aredsareds2" target="_blank" rel="noopener">nei.nih.gov (estudos AREDS/AREDS2)</a></li>
+                    </ul>
+                </details>
+
+                <details class="ref-group fade-in">
+                    <summary>Prevenção: sol, vida ao ar livre e contexto global</summary>
+                    <ul class="ref-list">
+                        <li><strong>American Academy of Ophthalmology.</strong> The Sun, UV Light and Your Eyes. Disponível em: <a href="https://www.aao.org/eye-health/glasses-contacts/sun" target="_blank" rel="noopener">aao.org/eye-health/glasses-contacts/sun</a></li>
+                        <li><strong>He M. et al.</strong> Effect of Time Spent Outdoors at School on the Development of Myopia Among Children in China: A Randomized Clinical Trial. JAMA, 2015. Disponível em: <a href="https://jamanetwork.com/journals/jama/fullarticle/2441261" target="_blank" rel="noopener">jamanetwork.com/journals/jama/fullarticle/2441261</a></li>
+                        <li><strong>Organização Mundial da Saúde (OMS).</strong> World report on vision. 2019. Disponível em: <a href="https://www.who.int/publications-detail-redirect/world-report-on-vision" target="_blank" rel="noopener">who.int/publications-detail-redirect/world-report-on-vision</a></li>
+                        <li><strong>Centers for Disease Control and Prevention (CDC).</strong> Vision and Eye Health. Disponível em: <a href="https://www.cdc.gov/vision-health/index.html" target="_blank" rel="noopener">cdc.gov/vision-health</a></li>
+                    </ul>
+                </details>
+            </div>
+        </section>
+
+        <!-- Continue aprendendo -->
+        <section class="learn-section" id="continue" aria-labelledby="h2-continue">
+            <div class="learn-container">
+                <div class="learn-header fade-in">
+                    <h2 id="h2-continue">Continue aprendendo sobre saúde visual</h2>
+                    <p>Revise os principais blocos deste guia sempre que precisar.</p>
+                </div>
+                <div class="learn-grid">
+                    <a href="#cuidados" class="learn-card fade-in">
+                        <h3>Cuidados diários</h3>
+                        <p>Conheça hábitos que ajudam a proteger seus olhos no dia a dia, do sol à alimentação.</p>
+                        <span class="learn-link">Ir para a seção
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </span>
                     </a>
-                    <a href="#doencas" class="btn-secondary">Conheça as Doenças</a>
-                </div>
-                <div class="hero-stats">
-                    <div>
-                        <div class="stat-number">80%</div>
-                        <div class="stat-label">Das informações<br>vêm pelos olhos</div>
-                    </div>
-                    <div>
-                        <div class="stat-number">2x</div>
-                        <div class="stat-label">Mais risco com<br>telas sem pausas</div>
-                    </div>
-                    <div>
-                        <div class="stat-number">1 ano</div>
-                        <div class="stat-label">Intervalo ideal<br>entre exames</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="iris-container">
-                    <div class="iris-main"></div>
-                    <div class="iris-ring iris-ring-1"></div>
-                    <div class="iris-ring iris-ring-2"></div>
-                    <div class="iris-ring iris-ring-3"></div>
-                    <div class="iris-glow"></div>
+                    <a href="#lentes" class="learn-card fade-in">
+                        <h3>Lentes de contato</h3>
+                        <p>Veja o guia de uso seguro que previne infecções graves da córnea.</p>
+                        <span class="learn-link">Ir para a seção
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </span>
+                    </a>
+                    <a href="#alertas" class="learn-card fade-in">
+                        <h3>Sinais de alerta</h3>
+                        <p>Saiba diferenciar o que pede atendimento imediato do que pode ser avaliado com calma.</p>
+                        <span class="learn-link">Ir para a seção
+                            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Cuidados Diários -->
-    <section class="section" id="cuidados">
-        <div class="section-header fade-in">
-            <span class="section-tag tag-teal">🛡️ Cuidados Diários</span>
-            <h2>Prevenção no Dia a Dia</h2>
-            <p>Adotar bons hábitos no cotidiano protege os olhos de fatores de risco e ajuda a prevenir diversas condições oculares</p>
-        </div>
-        
-        <div class="care-grid">
-            <div class="care-card fade-in" style="--card-color: #0d9488; --icon-bg: #ccfbf1; --icon-color: #0d9488;">
-                <div class="care-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <h3>Proteção UV Inegociável</h3>
-                <p>Use óculos de sol com filtro de 99% a 100% para raios UVA e UVB, mesmo em dias nublados. A exposição prolongada ao sol está ligada a maior risco de catarata e degeneração macular.</p>
-                <span class="highlight">Use sempre ao ar livre</span>
-            </div>
-
-            <div class="care-card fade-in" style="--card-color: #f59e0b; --icon-bg: #fef3c7; --icon-color: #b45309;">
-                <div class="care-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
-                </div>
-                <h3>Alimentação e Hidratação</h3>
-                <p>Priorize uma dieta rica em vitaminas A, C e E, além de luteína e ômega-3. Inclua folhas verdes escuras, frutas cítricas e peixes como salmão na sua rotina alimentar.</p>
-                <span class="highlight">Nutrientes essenciais</span>
-            </div>
-
-            <div class="care-card fade-in" style="--card-color: #e11d48; --icon-bg: #ffe4e6; --icon-color: #e11d48;">
-                <div class="care-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
-                </div>
-                <h3>Cuidado com as Mãos e Lentes</h3>
-                <p>Evite coçar ou esfregar os olhos com as mãos sujas para prevenir irritações e infecções. Se usar lentes de contato, siga rigorosamente as instruções de higiene e limpeza.</p>
-                <span class="highlight">Higiene rigorosa</span>
-            </div>
-
-            <div class="care-card fade-in" style="--card-color: #7c3aed; --icon-bg: #ede9fe; --icon-color: #7c3aed;">
-                <div class="care-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                </div>
-                <h3>Ambiente e Iluminação</h3>
-                <p>Garanta uma iluminação adequada para leitura e trabalho. Faça pausas regulares de 5 a 10 minutos a cada hora de atividade que exija esforço visual intenso.</p>
-                <span class="highlight">Ilumine-se corretamente</span>
-            </div>
-        </div>
-
-        <!-- 20-20-20 Feature Box -->
-        <div class="feature-box fade-in">
-            <div class="feature-text">
-                <h3>Regra 20-20-20</h3>
-                <p>Contra a fadiga digital: a cada 20 minutos em frente a telas, olhe para algo a 6 metros de distância por 20 segundos para relaxar a musculatura ocular. Também é importante piscar com frequência para manter a lubrificação.</p>
-                <div class="feature-steps">
-                    <div class="feature-step">
-                        <div class="num">20</div>
-                        <div class="label">minutos de tela</div>
-                    </div>
-                    <div class="feature-step">
-                        <div class="num">20</div>
-                        <div class="label">pés de distância</div>
-                    </div>
-                    <div class="feature-step">
-                        <div class="num">20</div>
-                        <div class="label">segundos de pausa</div>
-                    </div>
-                </div>
-            </div>
-            <div class="feature-visual">
-                <svg viewBox="0 0 300 280" width="300" fill="none">
-                    <rect x="50" y="40" width="200" height="130" rx="10" fill="white" opacity="0.95"/>
-                    <rect x="60" y="50" width="180" height="110" rx="5" fill="#dbeafe"/>
-                    <rect x="75" y="65" width="80" height="6" rx="3" fill="#1e5f8e" opacity="0.6"/>
-                    <rect x="75" y="80" width="150" height="4" rx="2" fill="#1e5f8e" opacity="0.3"/>
-                    <rect x="75" y="90" width="140" height="4" rx="2" fill="#1e5f8e" opacity="0.3"/>
-                    <rect x="75" y="100" width="120" height="4" rx="2" fill="#1e5f8e" opacity="0.3"/>
-                    <rect x="75" y="115" width="60" height="30" rx="4" fill="#f59e0b" opacity="0.7"/>
-                    <rect x="130" y="170" width="40" height="15" fill="white" opacity="0.9"/>
-                    <rect x="110" y="185" width="80" height="6" rx="3" fill="white" opacity="0.9"/>
-                    <circle cx="240" cy="220" r="35" fill="white" opacity="0.95"/>
-                    <circle cx="240" cy="220" r="30" fill="none" stroke="#f59e0b" stroke-width="3"/>
-                    <line x1="240" y1="220" x2="240" y2="200" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
-                    <line x1="240" y1="220" x2="255" y2="225" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
-                    <circle cx="240" cy="220" r="2" fill="#1e293b"/>
-                    <g transform="translate(40, 220)">
-                        <ellipse cx="30" cy="20" rx="25" ry="15" fill="white" stroke="#1e5f8e" stroke-width="2"/>
-                        <circle cx="38" cy="20" r="8" fill="#1e5f8e"/>
-                        <circle cx="40" cy="18" r="2" fill="white"/>
-                    </g>
-                    <path d="M90 240 Q130 260 180 240" stroke="#f59e0b" stroke-width="2" fill="none" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
-                    <defs>
-                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto">
-                            <path d="M0,0 L6,3 L0,6" fill="#f59e0b"/>
-                        </marker>
-                    </defs>
-                </svg>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cuidados Complementares -->
-    <section class="complementary-section" id="complementares">
-        <div class="complementary-container">
-            <div class="section-header fade-in">
-                <span class="section-tag tag-indigo">✨ Cuidados Complementares</span>
-                <h2>Vá Além do Básico</h2>
-                <p>Mais cuidados preventivos organizados por áreas para fortalecer ainda mais a saúde dos seus olhos</p>
-            </div>
-
-            <div class="complementary-intro fade-in">
-                <div class="complementary-intro-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div>
-                    <h3>Uma abordagem completa para sua visão</h3>
-                    <p>Estes cuidados complementam os hábitos anteriores e formam uma barreira robusta para a saúde dos seus olhos a longo prazo.</p>
-                </div>
-            </div>
-
-            <!-- 🌙 Estilo de Vida -->
-            <div class="category-block fade-in">
-                <div class="category-header">
-                    <div class="category-emoji" style="background: #ede9fe;">🌙</div>
-                    <div>
-                        <h3>Estilo de Vida e Hábitos Diários</h3>
-                        <p class="cat-subtitle">Rotinas que impactam diretamente a saúde ocular</p>
-                    </div>
-                </div>
-                <div class="tips-list">
-                    <div class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Priorize o Sono</h4>
-                            <p>Dormir menos de 8 horas por noite pode causar vermelhidão, vista cansada e inchaços. O sono é essencial para a recuperação do globo ocular.</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Modere o Álcool</h4>
-                            <p>O álcool desidrata o corpo, incluindo os olhos, e produz resíduos tóxicos que favorecem o envelhecimento precoce das células oculares.</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Evite o Tabagismo</h4>
-                            <p>Fumar aumenta significativamente o risco de catarata, degeneração macular e outras doenças graves. Parar de fumar é uma das melhores medidas preventivas.</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #7c3aed; --tip-bg: #ede9fe;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Atividades ao Ar Livre</h4>
-                            <p>Especialmente para crianças, passar cerca de 40 minutos por dia ao ar livre está associado à prevenção da miopia.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 💻 Ergonomia -->
-            <div class="category-block fade-in">
-                <div class="category-header">
-                    <div class="category-emoji" style="background: #e0e7ff;">💻</div>
-                    <div>
-                        <h3>Ergonomia e Uso de Telas</h3>
-                        <p class="cat-subtitle">Ajustes simples que reduzem a fadiga visual</p>
-                    </div>
-                </div>
-                <div class="tips-list">
-                    <div class="tip-item" style="--tip-color: #4338ca; --tip-bg: #e0e7ff;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Ajuste Tela e Iluminação</h4>
-                            <p>Ajuste o brilho e o contraste do monitor de acordo com a luz do ambiente. Telas muito brilhantes ou escuras causam desconforto e fadiga visual.</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #4338ca; --tip-bg: #e0e7ff;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Distância Segura</h4>
-                            <p>Para monitores, a distância ideal é de aproximadamente um braço esticado (50 a 70 cm). Para celulares e tablets, evite chegar a menos de 30 cm dos olhos.</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #4338ca; --tip-bg: #e0e7ff;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Aumente o Tamanho do Texto</h4>
-                            <p>Isso reduz o esforço excessivo dos olhos durante a leitura em dispositivos digitais, prevenindo a fadiga visual acumulada.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 🥗 Nutrição -->
-            <div class="category-block fade-in">
-                <div class="category-header">
-                    <div class="category-emoji" style="background: #fef3c7;">🥗</div>
-                    <div>
-                        <h3>Nutrição Específica para os Olhos</h3>
-                        <p class="cat-subtitle">Alimentos que nutrem e protegem sua visão</p>
-                    </div>
-                </div>
-                <div class="tips-list">
-                    <div class="tip-item" style="--tip-color: #b45309; --tip-bg: #fef3c7;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Dieta Rica em Nutrientes</h4>
-                            <p>Priorize alimentos ricos em vitaminas C e E, zinco, luteína, zeaxantina e ômega-3. Fontes: frutas cítricas, oleaginosas, leguminosas, folhas verdes escuras (couve, espinafre) e peixes gordurosos (salmão, sardinha).</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #b45309; --tip-bg: #fef3c7;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Dieta Mediterrânea</h4>
-                            <p>Este padrão alimentar, rico em peixes, vegetais e azeite, está associado a uma redução significativa na progressão da degeneração macular relacionada à idade (DMRI).</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 🧼 Higiene -->
-            <div class="category-block fade-in">
-                <div class="category-header">
-                    <div class="category-emoji" style="background: #ffe4e6;">🧼</div>
-                    <div>
-                        <h3>Higiene e Cuidados Específicos</h3>
-                        <p class="cat-subtitle">Detalhes que fazem toda a diferença</p>
-                    </div>
-                </div>
-                <div class="tips-list">
-                    <div class="tip-item" style="--tip-color: #e11d48; --tip-bg: #ffe4e6;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Lentes de Contato com Cuidado</h4>
-                            <p>Nunca durma com as lentes (salvo orientação médica), evite contato com água ao nadar ou tomar banho, e troque o estojo a cada três meses.</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #e11d48; --tip-bg: #ffe4e6;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Atenção ao Tempo Seco</h4>
-                            <p>A baixa umidade do ar agrava a evaporação da lágrima, causando irritação. Nesses períodos, o uso de lágrimas artificiais pode ser fundamental para lubrificar os olhos.</p>
-                        </div>
-                    </div>
-
-                    <div class="tip-item" style="--tip-color: #e11d48; --tip-bg: #ffe4e6;">
-                        <div class="tip-item-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                        </div>
-                        <div class="tip-item-content">
-                            <h4>Use os Óculos Corretamente</h4>
-                            <p>Se você precisa de correção visual, use os óculos regularmente e com a prescrição atualizada. Não usá-los pode causar dores de cabeça e cansaço visual.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer da seção -->
-            <div class="complementary-footer fade-in">
-                <div class="shield-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                </div>
-                <h3>Uma barreira robusta para seus olhos</h3>
-                <p>Essas medidas, somadas aos cuidados anteriores, formam uma proteção completa para a saúde dos seus olhos a longo prazo. Cuide da sua visão todos os dias!</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Doenças -->
-    <section class="diseases-section" id="doencas">
-        <div class="diseases-container">
-            <div class="section-header fade-in">
-                <span class="section-tag tag-blue">🩺 Doenças Oculares</span>
-                <h2>Principais Condições e Sinais</h2>
-                <p>Conhecer as doenças mais comuns ajuda a identificar sinais precoces e buscar ajuda no momento certo</p>
-            </div>
-
-            <div class="disease-list">
-                <div class="disease-item fade-in">
-                    <div class="disease-icon" style="background: #e8f4fc;">
-                        <svg fill="none" stroke="#1e5f8e" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                    </div>
-                    <div class="disease-info">
-                        <h3>Catarata</h3>
-                        <p>Opacificação do cristalino, levando a visão embaçada, sensibilidade à luz e dificuldade para enxergar à noite. É uma das principais causas de perda de visão reversível no mundo.</p>
-                    </div>
-                    <div class="disease-arrow">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
-
-                <div class="disease-item fade-in">
-                    <div class="disease-icon" style="background: #ccfbf1;">
-                        <svg fill="none" stroke="#0d9488" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    </div>
-                    <div class="disease-info">
-                        <h3>Glaucoma</h3>
-                        <p>Danifica o nervo óptico, geralmente associado ao aumento da pressão intraocular. É perigoso porque não apresenta sintomas nas fases iniciais, causando perda gradual da visão periférica.</p>
-                    </div>
-                    <div class="disease-arrow">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
-
-                <div class="disease-item fade-in">
-                    <div class="disease-icon" style="background: #fef3c7;">
-                        <svg fill="none" stroke="#b45309" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    </div>
-                    <div class="disease-info">
-                        <h3>DMRI (Degeneração Macular)</h3>
-                        <p>Afeta a região central da retina (mácula), comprometendo a visão necessária para ler e reconhecer rostos. Linhas retas podem parecer tortas para quem tem a condição.</p>
-                    </div>
-                    <div class="disease-arrow">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
-
-                <div class="disease-item fade-in">
-                    <div class="disease-icon" style="background: #ffe4e6;">
-                        <svg fill="none" stroke="#e11d48" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                    </div>
-                    <div class="disease-info">
-                        <h3>Retinopatia Diabética</h3>
-                        <p>Complicação do diabetes que danifica os vasos sanguíneos da retina. Pessoas com diabetes devem fazer exames anuais, pois o controle glicêmico rigoroso previne ou retarda a progressão.</p>
-                    </div>
-                    <div class="disease-arrow">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
-
-                <div class="disease-item fade-in">
-                    <div class="disease-icon" style="background: #ede9fe;">
-                        <svg fill="none" stroke="#7c3aed" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    </div>
-                    <div class="disease-info">
-                        <h3>Erros de Refração</h3>
-                        <p>Incluem miopia, hipermetropia e astigmatismo, que podem ser corrigidos com óculos ou lentes. A presbiopia (vista cansada) é a perda natural da capacidade de focar de perto, comum após os 40 anos.</p>
-                    </div>
-                    <div class="disease-arrow">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Alertas -->
-    <section class="alert-section" id="alertas">
-        <div class="alert-container">
-            <div class="alert-box fade-in">
-                <div class="alert-header">
-                    <div class="alert-header-icon">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                    </div>
-                    <div>
-                        <h2>🚨 Quando Procurar Ajuda</h2>
-                        <p>Fique atento a estes sinais e busque atendimento médico rapidamente</p>
-                    </div>
-                </div>
-                <div class="alert-grid">
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>Visão embaçada ou perda súbita</span>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>Dor ocular intensa</span>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>Sensibilidade anormal à luz</span>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>Vermelhidão persistente</span>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>Visão de flashes luminosos</span>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>"Moscas volantes" repentinas</span>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>Perda da visão periférica</span>
-                    </div>
-                    <div class="alert-item">
-                        <div class="alert-dot"></div>
-                        <span>Linhas retas parecem tortas</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Exames -->
-    <section class="exams-section" id="exames">
-        <div class="section-header fade-in">
-            <span class="section-tag tag-purple">🗓️ Exames Periódicos</span>
-            <h2>Quando Fazer o Check-up Visual</h2>
-            <p>Muitas doenças oculares são silenciosas. O exame oftalmológico completo com dilatação da pupila é a única forma de detectá-las precocemente</p>
-        </div>
-
-        <div class="timeline">
-            <div class="timeline-item fade-in">
-                <span class="timeline-age">Crianças e Adolescentes</span>
-                <h3>Triagens desde o nascimento</h3>
-                <p>Teste ao nascer, entre 6 e 12 meses, antes da alfabetização e anualmente durante a fase escolar. Essencial para detectar problemas que podem afetar o aprendizado.</p>
-                <div class="timeline-freq">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    Anualmente na fase escolar
-                </div>
-            </div>
-
-            <div class="timeline-item fade-in">
-                <span class="timeline-age">Adultos (18–39 anos)</span>
-                <h3>Prevenção e monitoramento</h3>
-                <p>Consultas regulares especialmente para usuários de lentes de contato e profissionais expostos a telas por longos períodos. Importante para detectar erros de refração precocemente.</p>
-                <div class="timeline-freq">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    A cada 1 a 2 anos
-                </div>
-            </div>
-
-            <div class="timeline-item fade-in">
-                <span class="timeline-age">Meia-Idade (40–59 anos)</span>
-                <h3>Avaliação completa anual</h3>
-                <p>Medição da pressão intraocular e exame de fundo de olho, devido ao maior risco de glaucoma e catarata nesta fase. A presbiopia geralmente se manifesta neste período.</p>
-                <div class="timeline-freq">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    Avaliação anual
-                </div>
-            </div>
-
-            <div class="timeline-item fade-in">
-                <span class="timeline-age">Idosos (60+ anos)</span>
-                <h3>Monitoramento intensivo</h3>
-                <p>Acompanhamento regular para monitorar catarata, DMRI e glaucoma — as três principais causas de perda de visão nesta faixa etária. Exames mais frequentes podem ser necessários.</p>
-                <div class="timeline-freq">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    Anual ou semestral
-                </div>
-            </div>
-
-            <div class="timeline-item fade-in">
-                <span class="timeline-age">Grupos de Risco</span>
-                <h3>Acompanhamento especializado</h3>
-                <p>Pessoas com diabetes, hipertensão ou histórico familiar de doenças oculares precisam de avaliações mais frequentes, independentemente da idade. O controle das condições de base é fundamental.</p>
-                <div class="timeline-freq">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    Frequência individualizada
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter / Captura de Leads -->
-    <section class="newsletter" id="newsletter">
-        <div class="newsletter-content fade-in">
-            <h2>Receba nossas dicas de saúde visual</h2>
-            <p class="lead-text">Cadastre-se para receber conteúdos exclusivos por e-mail e WhatsApp. Seus dados são salvos com segurança na nossa base.</p>
-            <form class="newsletter-form" id="leadForm" novalidate>
-                <input type="text" id="nameInput" name="nome" placeholder="Seu nome" autocomplete="name" required>
-                <input type="email" id="emailInput" name="email" placeholder="Seu melhor e-mail" autocomplete="email" required>
-                <input type="tel" id="phoneInput" name="telefone" placeholder="WhatsApp: (11) 99999-9999" autocomplete="tel" required>
-                <label class="consent-label">
-                    <input type="checkbox" id="consentInput" required>
-                    <span>Autorizo o contato por e-mail/WhatsApp e concordo com a Política de Privacidade (LGPD).</span>
-                </label>
-                <button type="submit" id="submitBtn">Quero receber</button>
-            </form>
-            <p id="subscribeMsg"></p>
-            <p class="form-note">🔒 Seus dados ficam armazenados de forma segura e não são compartilhados com terceiros.</p>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <a href="#" class="logo">
-                    <div class="logo-icon"></div>
+                <a href="#inicio" class="logo" aria-label="De Olho na Visão — voltar ao início">
+                    <div class="logo-icon" aria-hidden="true"></div>
                     De olho na visão
                 </a>
-                <p>Seu portal de saúde visual. Conteúdo confiável criado por especialistas para ajudar você a preservar a visão em todas as fases da vida.</p>
+                <p class="academic-id">
+                    <strong>De Olho na Visão</strong><br>
+                    Projeto acadêmico de educação em saúde visual, desenvolvido como trabalho de conclusão de disciplina do SENAC.<br>
+                    <strong>Responsável:</strong> [INSERIR NOME DO AUTOR]
+                </p>
+                <p class="disclaimer">Este conteúdo possui finalidade exclusivamente educativa e informativa. Não substitui avaliação, diagnóstico ou acompanhamento por profissional de saúde habilitado.</p>
             </div>
-            <div class="footer-column">
-                <h4>Conteúdo</h4>
+            <nav class="footer-column" aria-label="Navegação do rodapé">
+                <h4>Navegação</h4>
                 <ul>
-                    <li><a href="#cuidados">Cuidados Diários</a></li>
-                    <li><a href="#complementares">Cuidados Complementares</a></li>
-                    <li><a href="#doencas">Doenças Oculares</a></li>
-                    <li><a href="#alertas">Sinais de Alerta</a></li>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#cuidados">Cuidados diários</a></li>
+                    <li><a href="#complementares">Cuidados complementares</a></li>
+                    <li><a href="#lentes">Lentes de contato</a></li>
+                    <li><a href="#doencas">Doenças oculares</a></li>
+                    <li><a href="#alertas">Sinais de alerta</a></li>
                     <li><a href="#exames">Exames</a></li>
+                    <li><a href="#referencias">Referências</a></li>
                 </ul>
-            </div>
+            </nav>
             <div class="footer-column">
-                <h4>Institucional</h4>
-                <ul>
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Equipe Médica</a></li>
-                    <li><a href="#">Contato</a></li>
-                    <li><a href="#">Parcerias</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Suporte</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Privacidade</a></li>
-                    <li><a href="#">Termos de Uso</a></li>
-                    <li><a href="#">Acessibilidade</a></li>
-                </ul>
+                <h4>Sobre este projeto</h4>
+                <p>Trabalho acadêmico sem fins comerciais. O conteúdo foi organizado a partir de fontes públicas de instituições como NEI, AAO, CDC e OMS e do guia do próprio projeto, listados na seção de referências. Este projeto não utiliza o logotipo do SENAC e não declara endosso da instituição.</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 De olho na visão. Todos os direitos reservados.</p>
-            <div class="social-links">
-                <a href="#" aria-label="Instagram">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </a>
-                <a href="#" aria-label="Facebook">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                </a>
-                <a href="#" aria-label="YouTube">
-                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </a>
-            </div>
+            <p>© 2026 De Olho na Visão — projeto acadêmico educativo.</p>
+            <p>Feito com recursos gratuitos: HTML, CSS e JavaScript.</p>
         </div>
     </footer>
 
-    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">
-        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo da página">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
     </button>
 
     <script>
-        /* ============================================================
-           CONFIGURAÇÃO DA BASE DE DADOS (Google Sheets via Apps Script)
-        ============================================================ */
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_apd4eHlEMLWq5ZH7HEOQIxQuj5My9MR_XM0e-CI4UrEs00jl_-HQFUnNv2GjgRI/exec';
+        // Preferência de movimento reduzido
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const scrollBehavior = () => reduceMotion.matches ? 'auto' : 'smooth';
 
-        // Header scroll
+        // Sombra do cabeçalho + botão voltar ao topo
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            const scrollTop = document.getElementById('scrollTop');
-            header.classList.toggle('scrolled', window.scrollY > 50);
-            scrollTop.classList.toggle('visible', window.scrollY > 500);
-        });
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
+        }, { passive: true });
 
-        // Fade in animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Mobile menu
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobileNav');
-            nav.classList.toggle('active');
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-        }
-
-        // Scroll to top
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        /* ============================================================
-           MÁSCARA DE TELEFONE: (11) 99999-9999
-        ============================================================ */
-        document.getElementById('phoneInput').addEventListener('input', function (e) {
-            let v = e.target.value.replace(/\D/g, '').slice(0, 11);
-            if (v.length > 6)      v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
-            else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
-            else if (v.length > 0) v = '(' + v;
-            e.target.value = v;
-        });
-
-        /* ============================================================
-           ENVIO DO FORMULÁRIO PARA A PLANILHA GOOGLE SHEETS
-           CORREÇÃO: usa FormData (formato nativo de formulário),
-           que o Google Apps Script lê corretamente via e.parameter.
-           O mode 'no-cors' garante que o navegador não bloqueie o
-           envio por políticas de CORS (resposta opaca é o esperado).
-        ============================================================ */
-        document.getElementById('leadForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const btn = document.getElementById('submitBtn');
-            const msg = document.getElementById('subscribeMsg');
-            const nome = document.getElementById('nameInput').value.trim();
-            const email = document.getElementById('emailInput').value.trim();
-            const telefone = document.getElementById('phoneInput').value.trim();
-            const consentimento = document.getElementById('consentInput').checked;
-
-            // Validações
-            if (!nome || !email || !telefone) {
-                msg.textContent = '⚠️ Preencha nome, e-mail e WhatsApp para continuar.';
-                msg.style.color = '#fcd34d';
-                msg.style.display = 'block';
-                setTimeout(() => { msg.style.display = 'none'; }, 4000);
-                return;
-            }
-
-            if (!consentimento) {
-                msg.textContent = '⚠️ É necessário aceitar a Política de Privacidade (LGPD).';
-                msg.style.color = '#fcd34d';
-                msg.style.display = 'block';
-                setTimeout(() => { msg.style.display = 'none'; }, 4000);
-                return;
-            }
-
-            // Monta os dados no formato que o Apps Script entende (e.parameter)
-            const formData = new FormData();
-            formData.append('nome', nome);
-            formData.append('email', email);
-            formData.append('telefone', telefone);
-            formData.append('consentimento', consentimento ? 'SIM' : 'NÃO');
-            formData.append('origem', window.location.href);
-
-            btn.disabled = true;
-            btn.textContent = 'Enviando...';
-            msg.style.display = 'none';
-
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: formData
+        // Animações de entrada (respeitam movimento reduzido)
+        if (!reduceMotion.matches && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
                 });
-                msg.textContent = '✓ Cadastro recebido! Bem-vindo(a) à comunidade De Olho na Visão.';
-                msg.style.color = '#a7f3d0';
-                document.getElementById('leadForm').reset();
-            } catch (err) {
-                console.error('Erro ao enviar para a planilha:', err);
-                msg.textContent = '✗ Erro de conexão. Verifique sua internet e tente novamente.';
-                msg.style.color = '#fca5a5';
-            } finally {
-                btn.disabled = false;
-                btn.textContent = 'Quero receber';
-                msg.style.display = 'block';
-                setTimeout(() => { msg.style.display = 'none'; }, 6000);
-            }
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        } else {
+            document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+        }
+
+        // Menu mobile acessível
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const menuClose = document.getElementById('menuClose');
+
+        function openMenu() {
+            mobileNav.classList.add('active');
+            menuBtn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+            menuClose.focus();
+        }
+        function closeMenu() {
+            mobileNav.classList.remove('active');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+            menuBtn.focus();
+        }
+        menuBtn.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) closeMenu();
+        });
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Rolagem suave segura (ignora âncoras inválidas ou inexistentes)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') { e.preventDefault(); return; }
+                let target = null;
+                try { target = document.querySelector(href); } catch (err) { target = null; }
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+                }
+            });
+        });
+
+        // Voltar ao topo
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: scrollBehavior() });
         });
     </script>
 </body>
