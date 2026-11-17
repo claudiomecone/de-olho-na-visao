@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diabetes e Saúde Ocular — Infográfico Interativo para Ótica</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            ocean: {
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+              500: '#0EA5E9',
+              600: '#0284C7',
+              700: '#0369A1',
+              900: '#0C4A6E',
+            },
+            teal: {
+              50: '#F0FDFA',
+              100: '#CCFBF1',
+              500: '#14B8A6',
+              600: '#0D9488',
+              700: '#0F766E',
+              900: '#134E4A',
+            },
+            amber: {
+              50: '#FFFBEB',
+              100: '#FEF3C7',
+              500: '#F59E0B',
+              600: '#D97706',
+              700: '#B45309',
+            },
+            coral: {
+              50: '#FEF2F2',
+              100: '#FEE2E2',
+              500: '#EF4444',
+              600: '#DC2626',
+              700: '#B91C1C',
+              900: '#7F1D1D',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #F8FAFC;
+      color: #0F172A;
+      overflow-x: hidden;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 300px;
+      max-height: 400px;
+    }
+    @media (min-width: 768px) {
+      .chart-container {
+        height: 340px;
+      }
+    }
+    .eye-sim-container {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 310px;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    input[type="range"] {
+      accent-color: #0284C7;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <header class="bg-white/95 backdrop-blur border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-600 to-teal-600 text-white flex items-center justify-center text-xl shadow-md">
+          👁️
+        </div>
+        <div>
+          <h1 class="font-display font-extrabold text-slate-900 text-base sm:text-lg leading-tight">Diabetes & Saúde Ocular</h1>
+          <p class="text-xs font-medium text-ocean-700">Infográfico Interativo • Curso Técnico em Ótica</p>
+        </div>
+      </div>
+      <nav class="hidden lg:flex items-center gap-5 text-sm font-semibold text-slate-600">
+        <a href="#panorama" class="hover:text-ocean-600 transition">Panorama</a>
+        <a href="#simulador" class="hover:text-ocean-600 transition">Simulador Óptico</a>
+        <a href="#patologias" class="hover:text-ocean-600 transition">6 Patologias</a>
+        <a href="#sinais" class="hover:text-ocean-600 transition">Sinais & Urgência</a>
+        <a href="#prevencao" class="hover:text-ocean-600 transition">Prevenção & ADA</a>
+        <a href="#pratica" class="hover:text-ocean-600 transition">Simulador de Balcão</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="bg-gradient-to-br from-ocean-900 via-ocean-700 to-teal-700 text-white py-14 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3 py-1 rounded-full bg-white/15 text-ocean-100 text-xs font-bold uppercase tracking-wider mb-4">
+          Guia Clínico e Prático para Futuros Técnicos em Ótica
+        </span>
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-5">
+          Como a Diabetes afeta a visão — e por que o técnico em ótica é peça-chave na prevenção
+        </h2>
+        <p class="text-ocean-50 text-lg sm:text-xl leading-relaxed mb-8">
+          Pense na <strong>retina como o "sensor da câmera"</strong> do olho. O excesso crônico de açúcar no sangue machuca os "caninhos" (vasos sanguíneos) que alimentam esse sensor: eles podem <strong>vazar</strong>, <strong>entupir</strong> ou estimular vasos frágeis que sangram, além de inchar a lente natural do olho.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#simulador" class="px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm shadow-lg transition">
+            Testar Simulador de Grau Falso
+          </a>
+          <a href="#pratica" class="px-5 py-3 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold text-sm border border-white/30 transition">
+            Praticar Casos no Balcão
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+
+    <section id="panorama" class="reveal scroll-mt-20">
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-ocean-600">01 • Epidemiologia e Impacto</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">O Tamanho do Desafio Visual no Brasil</h3>
+        <p class="text-slate-600 mt-2 max-w-3xl">
+          A retinopatia diabética é a complicação ocular mais importante e pode evoluir durante anos sem dar nenhum sintoma. No atendimento óptico diário, reconhecer os sinais precoces evita receitas erradas e encaminha o paciente a tempo de salvar a visão.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-ocean-600">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-slate-500 uppercase">Prevalência no Brasil</span>
+            <span class="text-2xl">🇧🇷</span>
+          </div>
+          <div class="font-display text-4xl font-extrabold text-ocean-700 mb-2">1 em cada 3</div>
+          <p class="text-sm text-slate-600">pessoas com diabetes no Brasil já apresenta algum grau de lesão vascular na retina, muitas vezes sem saber.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-amber-500">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-slate-500 uppercase">Risco de Catarata</span>
+            <span class="text-2xl">☁️</span>
+          </div>
+          <div class="font-display text-4xl font-extrabold text-amber-600 mb-2">+60%</div>
+          <p class="text-sm text-slate-600">de aumento na chance de desenvolver catarata metabólica precoce devido ao estresse osmótico no cristalino.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-teal-600">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-slate-500 uppercase">Poder da Prevenção</span>
+            <span class="text-2xl">🛡️</span>
+          </div>
+          <div class="font-display text-4xl font-extrabold text-teal-700 mb-2">&lt; 5%</div>
+          <p class="text-sm text-slate-600">é o risco de cegueira grave quando há controle clínico adequado e exame anual de mapeamento de retina.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 flex flex-col justify-between">
+          <div class="mb-4">
+            <h4 class="font-display font-bold text-lg text-slate-900">Comprometimento Ocular em Diabéticos</h4>
+            <p class="text-sm text-slate-600 mt-1">Proporção estimada de pacientes diabéticos no Brasil que desenvolvem alterações retinianas ao longo da evolução da doença.</p>
+          </div>
+          <div class="chart-container">
+            <canvas id="prevalenceChart"></canvas>
+          </div>
+          <p class="text-xs text-slate-500 mt-4 bg-slate-50 p-3 rounded-xl">
+            <strong>Conclusão prática:</strong> Como 33% dos pacientes possuem alterações silenciosas, medir apenas o grau nos óculos não substitui o exame de fundo de olho dilatado.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 flex flex-col justify-between">
+          <div class="mb-4">
+            <h4 class="font-display font-bold text-lg text-slate-900">Peso dos Fatores Sistêmicos no Risco Ocular</h4>
+            <p class="text-sm text-slate-600 mt-1">A saúde dos vasos da retina depende do controle conjunto do metabolismo, pressão arterial e função renal.</p>
+          </div>
+          <div class="chart-container">
+            <canvas id="riskFactorsChart"></canvas>
+          </div>
+          <p class="text-xs text-slate-500 mt-4 bg-slate-50 p-3 rounded-xl">
+            <strong>Evidência clínica:</strong> Tempo de diabetes e hemoglobina glicada (HbA1c) elevada lideram o risco, agravados por hipertensão, colesterol/triglicérides e doença renal.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulador" class="reveal scroll-mt-20">
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-ocean-600">02 • Óptica Oftálmica e Refração</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">O "Efeito Esponja" e o Perigo do Grau Falso</h3>
+        <p class="text-slate-600 mt-2 max-w-3xl">
+          Quando a glicose sobe muito, o excesso de açúcar dentro do olho é convertido em <strong>sorbitol</strong>. O sorbitol atrai água por osmose para dentro do cristalino, fazendo-o inchar e ficar mais curvo. Isso antecipa o foco da luz antes da retina, gerando uma <strong>miopia temporária</strong>.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-md border border-slate-200 p-6 sm:p-8 mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-5 space-y-5">
+            <div class="bg-ocean-50 p-5 rounded-2xl border border-ocean-100">
+              <div class="flex justify-between items-center mb-3">
+                <label for="glucoseSlider" class="font-bold text-slate-900 text-sm">Simular Glicemia Capilar:</label>
+                <span id="glucoseDisplay" class="px-3 py-1 rounded-lg bg-ocean-700 text-white font-display font-bold text-sm">100 mg/dL</span>
+              </div>
+              <input id="glucoseSlider" type="range" min="70" max="400" step="5" value="100" class="w-full h-3 bg-ocean-200 rounded-lg cursor-pointer" />
+              <div class="flex justify-between text-xs font-semibold text-slate-500 mt-2">
+                <span>70 (Estável)</span>
+                <span>180 (Alerta)</span>
+                <span>400 (Pico)</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="block text-xs font-semibold text-slate-500 uppercase">Desvio Refrativo</span>
+                <span id="diopterShift" class="font-display text-2xl font-extrabold text-teal-700">0.00 D</span>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="block text-xs font-semibold text-slate-500 uppercase">Estado do Cristalino</span>
+                <span id="lensState" class="font-display text-base font-bold text-slate-800">Curvatura Normal</span>
+              </div>
+            </div>
+
+            <div id="opticalAlertBox" class="p-4 rounded-2xl bg-teal-50 border border-teal-200 text-teal-900 transition-colors">
+              <h4 id="opticalAlertTitle" class="font-bold text-sm flex items-center gap-2">
+                <span>✅</span> Conduta Óptica: Seguro para Aviar Receita
+              </h4>
+              <p id="opticalAlertDesc" class="text-xs mt-1.5 leading-relaxed">
+                Com glicemia controlada há pelo menos 3 a 4 semanas, o cristalino mantém biometria estável. Lentes progressivas freeform podem ser confeccionadas com segurança.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-slate-950 rounded-2xl p-4 border border-slate-800 shadow-inner">
+            <div class="eye-sim-container">
+              <canvas id="eyeCanvas"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+        <div class="mb-4">
+          <h4 class="font-display font-bold text-lg text-slate-900">Curva de Estabilização do Grau Após Controle Glicêmico</h4>
+          <p class="text-sm text-slate-600 mt-1">Evolução típica do erro refrativo (em Dioptrias) ao longo de 6 semanas após um paciente descompensado iniciar o controle rigoroso da glicose.</p>
+        </div>
+        <div class="chart-container">
+          <canvas id="stabilizationChart"></canvas>
+        </div>
+        <p class="text-xs text-slate-600 mt-4 bg-amber-50 border border-amber-200 p-3 rounded-xl">
+          <strong>Regra de Ouro no Balcão:</strong> Aguardar entre <strong>3 a 4 semanas</strong> de glicemia estabilizada antes de produzir óculos definitivos evita inadaptação e perda de lentes de alto valor agregado.
+        </p>
+      </div>
+    </section>
+
+    <section id="patologias" class="reveal scroll-mt-20">
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-ocean-600">03 • Anatomia e Patologias</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">As 6 Principais Alterações Oculares na Diabetes</h3>
+        <p class="text-slate-600 mt-2 max-w-3xl">
+          A consulta oftalmológica do paciente diabético não deve se resumir a "medir o grau". A hiperglicemia afeta desde a lágrima na superfície até os nervos e vasos profundos da retina.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:-translate-y-1 transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-12 h-12 rounded-xl bg-coral-50 text-coral-600 flex items-center justify-center text-2xl">🩸</span>
+            <span class="px-2.5 py-1 rounded-full bg-coral-100 text-coral-700 text-xs font-bold">Mais Comum</span>
+          </div>
+          <h4 class="font-display font-bold text-lg text-slate-900 mb-2">1. Retinopatia Diabética</h4>
+          <p class="text-sm text-slate-600 mb-3">
+            <strong>Fase Não Proliferativa:</strong> Capilares enfraquecem, formam microaneurismas e vazam sangue e gorduras (exsudatos) silenciosamente.
+          </p>
+          <p class="text-sm text-slate-600">
+            <strong>Fase Proliferativa:</strong> Falta de oxigênio estimula neovasos frágeis que sangram no vítreo e podem causar descolamento tracional da retina.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:-translate-y-1 transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">🎯</span>
+            <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-bold">Visão Central</span>
+          </div>
+          <h4 class="font-display font-bold text-lg text-slate-900 mb-2">2. Edema Macular Diabético</h4>
+          <p class="text-sm text-slate-600 mb-3">
+            Vazamento de líquido diretamente na <strong>mácula</strong> (região central da retina usada para ler, reconhecer rostos e ver detalhes).
+          </p>
+          <p class="text-sm text-slate-600">
+            É uma das principais causas de baixa visual. Provoca embaçamento central, manchas e visão de linhas tortas ou onduladas.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:-translate-y-1 transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-12 h-12 rounded-xl bg-ocean-50 text-ocean-600 flex items-center justify-center text-2xl">🌫️</span>
+            <span class="px-2.5 py-1 rounded-full bg-ocean-100 text-ocean-700 text-xs font-bold">+60% Risco</span>
+          </div>
+          <h4 class="font-display font-bold text-lg text-slate-900 mb-2">3. Catarata Precoce</h4>
+          <p class="text-sm text-slate-600 mb-3">
+            O acúmulo contínuo de sorbitol e água rompe as fibras internas do cristalino, acelerando sua opacificação muito antes da idade habitual.
+          </p>
+          <p class="text-sm text-slate-600">
+            Gera perda progressiva de contraste, sensibilidade ao brilho (ofuscamento noturno) e necessidade frequente de troca de lentes.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:-translate-y-1 transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-12 h-12 rounded-xl bg-coral-50 text-coral-600 flex items-center justify-center text-2xl">⚡</span>
+            <span class="px-2.5 py-1 rounded-full bg-coral-100 text-coral-700 text-xs font-bold">Emergência</span>
+          </div>
+          <h4 class="font-display font-bold text-lg text-slate-900 mb-2">4. Glaucoma Neovascular</h4>
+          <p class="text-sm text-slate-600 mb-3">
+            Em estágios isquêmicos avançados, vasos anormais crescem sobre a íris e entopem o ângulo de drenagem do humor aquoso.
+          </p>
+          <p class="text-sm text-slate-600">
+            A pressão intraocular dispara subitamente, causando dor ocular intensa, olho vermelho e dano rápido ao nervo óptico.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:-translate-y-1 transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-2xl">👀</span>
+            <span class="px-2.5 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-bold">Motilidade</span>
+          </div>
+          <h4 class="font-display font-bold text-lg text-slate-900 mb-2">5. Neuropatia e Visão Dupla</h4>
+          <p class="text-sm text-slate-600 mb-3">
+            A isquemia nos pequenos vasos que nutrem os nervos cranianos (III, IV ou VI) paralisa temporariamente músculos oculomotores.
+          </p>
+          <p class="text-sm text-slate-600">
+            Causa estrabismo súbito e <strong>diplopia (visão dupla)</strong>. Geralmente regride em semanas ou meses com o controle glicêmico.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:-translate-y-1 transition">
+          <div class="flex items-center justify-between mb-4">
+            <span class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl">🏜️</span>
+            <span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-bold">Superfície</span>
+          </div>
+          <h4 class="font-display font-bold text-lg text-slate-900 mb-2">6. Olho Seco e Córnea</h4>
+          <p class="text-sm text-slate-600 mb-3">
+            A neuropatia diabética reduz a sensibilidade da córnea, diminuindo a frequência do piscar e a qualidade do filme lacrimal.
+          </p>
+          <p class="text-sm text-slate-600">
+            Provoca ardor, sensação de areia, embaçamento transitório e exige cautela extra na adaptação de lentes de contato.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sinais" class="reveal scroll-mt-20">
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-ocean-600">04 • Triagem e Reconhecimento de Sintomas</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Sinais Iniciais vs. Sinais de Urgência Médica</h3>
+        <p class="text-slate-600 mt-2 max-w-3xl">
+          Lembre-se: <strong>no começo, a retinopatia diabética não dá sintoma nenhum</strong>. Quando o cliente relata queixas no balcão da ótica, saber diferenciar sinais iniciais de emergências oftalmológicas é vital.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border-2 border-amber-300">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl">⚠️</span>
+            <div>
+              <h4 class="font-display text-xl font-bold text-slate-900">8 Sinais Iniciais Mais Comuns</h4>
+              <p class="text-xs font-semibold text-amber-700">Indicam necessidade de avaliação retiniana e controle glicêmico</p>
+            </div>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-700">
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">1.</span>
+              <span><strong>Visão embaçada que vai e volta:</strong> oscila conforme os picos de açúcar ou edema macular leve.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">2.</span>
+              <span><strong>Dificuldade para ler letras pequenas:</strong> afastar o celular ou cansar rápido na leitura.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">3.</span>
+              <span><strong>Piora para enxergar à noite:</strong> dificuldade para dirigir ou caminhar em locais escuros.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">4.</span>
+              <span><strong>Manchas ou "mosquinhas" flutuando:</strong> alterações no vítreo ou micro-sangramentos.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">5.</span>
+              <span><strong>Linhas tortas ou deformadas:</strong> batentes de porta ou azulejos parecem ondulados (edema macular).</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">6.</span>
+              <span><strong>Perda de nitidez no centro da visão:</strong> dificuldade para reconhecer rostos ou detalhes.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">7.</span>
+              <span><strong>Mudança frequente no grau dos óculos:</strong> receitas antigas deixam de funcionar em poucas semanas.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-amber-600">8.</span>
+              <span><strong>Olho seco, ardor ou sensação de areia:</strong> alteração na superfície ocular e filme lacrimal.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-coral-50 rounded-3xl p-6 sm:p-8 shadow-md border-2 border-coral-500">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-11 h-11 rounded-2xl bg-coral-600 text-white flex items-center justify-center text-xl">🚨</span>
+            <div>
+              <h4 class="font-display text-xl font-bold text-coral-900">Sinais de Urgência Oftalmológica</h4>
+              <p class="text-xs font-bold text-coral-700">Encaminhar imediatamente ao pronto-socorro oftalmológico</p>
+            </div>
+          </div>
+          <ul class="space-y-3.5 text-sm text-coral-900">
+            <li class="flex items-start gap-3 bg-white/80 p-3 rounded-xl border border-coral-200">
+              <span class="text-base">🛑</span>
+              <span><strong>Perda súbita de visão</strong> em um ou ambos os olhos.</span>
+            </li>
+            <li class="flex items-start gap-3 bg-white/80 p-3 rounded-xl border border-coral-200">
+              <span class="text-base">⚡</span>
+              <span><strong>Chuva de "moscas volantes" novas</strong> ou <strong>flashes de luz</strong> repentinos.</span>
+            </li>
+            <li class="flex items-start gap-3 bg-white/80 p-3 rounded-xl border border-coral-200">
+              <span class="text-base">🌑</span>
+              <span>Sensação de <strong>"cortina escura"</strong> cobrindo parte do campo visual (risco de descolamento de retina).</span>
+            </li>
+            <li class="flex items-start gap-3 bg-white/80 p-3 rounded-xl border border-coral-200">
+              <span class="text-base">🎯</span>
+              <span><strong>Mancha escura fixa</strong> bem no centro da visão.</span>
+            </li>
+            <li class="flex items-start gap-3 bg-white/80 p-3 rounded-xl border border-coral-200">
+              <span class="text-base">🔥</span>
+              <span><strong>Dor ocular forte</strong> ou <strong>olho muito vermelho</strong> (alerta para glaucoma neovascular).</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="prevencao" class="reveal scroll-mt-20">
+      <div class="mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-ocean-600">05 • Rastreamento, Prevenção e Tratamentos</span>
+        <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Diretrizes de Rastreio (ADA / AAO) e Proteção Global</h3>
+        <p class="text-slate-600 mt-2 max-w-3xl">
+          A prevenção tem duas frentes: <strong>cuidar do corpo inteiro</strong> (glicose, pressão, colesterol e rins) e <strong>examinar a retina com pupila dilatada antes que os sintomas apareçam</strong>.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-3xl shadow-md border border-slate-200 overflow-hidden mb-8">
+        <div class="bg-ocean-900 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-2">
+          <h4 class="font-display font-bold text-lg">Protocolo de Rastreamento Oftalmológico (ADA &amp; AAO)</h4>
+          <span class="text-xs bg-white/15 px-3 py-1 rounded-full font-semibold">Padrão Ouro: Fundo de Olho Dilatado ou Retinografia Validada</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-xs font-bold uppercase text-slate-600">
+                <th class="py-3.5 px-6">Perfil do Paciente</th>
+                <th class="py-3.5 px-6">Quando Fazer o 1º Exame</th>
+                <th class="py-3.5 px-6">Acompanhamento Recomendado</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+              <tr class="hover:bg-ocean-50/50 transition">
+                <td class="py-4 px-6 font-bold text-slate-900">Diabetes Tipo 2</td>
+                <td class="py-4 px-6"><span class="px-2.5 py-1 rounded-md bg-coral-100 text-coral-800 font-bold text-xs">Imediatamente</span> no diagnóstico</td>
+                <td class="py-4 px-6">Anual (ou mais frequente se houver retinopatia detectada).</td>
+              </tr>
+              <tr class="hover:bg-ocean-50/50 transition">
+                <td class="py-4 px-6 font-bold text-slate-900">Diabetes Tipo 1</td>
+                <td class="py-4 px-6">Dentro de <strong>5 anos</strong> após o diagnóstico</td>
+                <td class="py-4 px-6">Anual após o primeiro exame de rastreio.</td>
+              </tr>
+              <tr class="hover:bg-ocean-50/50 transition">
+                <td class="py-4 px-6 font-bold text-slate-900">Gestantes com Diabetes Pré-existente</td>
+                <td class="py-4 px-6"><strong>Antes da gravidez</strong> ou no <strong>1º trimestre</strong></td>
+                <td class="py-4 px-6">Trimestral durante a gestação e até 1 ano pós-parto.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mb-10">
+        <h4 class="font-display font-bold text-xl text-slate-900 mb-4">Os 7 Pilares da Proteção Visual</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-2xl block mb-2">👁️</span>
+            <h5 class="font-bold text-slate-900 text-sm">1. Exame Regular</h5>
+            <p class="text-xs text-slate-600 mt-1">Avaliação da retina com pupila dilatada, OCT ou telemedicina (como o modelo do SUS/UERJ), mesmo enxergando bem.</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-2xl block mb-2">🩸</span>
+            <h5 class="font-bold text-slate-900 text-sm">2. Controle da Glicose</h5>
+            <p class="text-xs text-slate-600 mt-1">Manter HbA1c na meta sem quedas bruscas por conta própria (quedas muito rápidas exigem vigilância da retina).</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-2xl block mb-2">💓</span>
+            <h5 class="font-bold text-slate-900 text-sm">3. Pressão Arterial</h5>
+            <p class="text-xs text-slate-600 mt-1">Controlar a hipertensão reduz a agressão mecânica e o vazamento nos capilares frágeis da retina.</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-2xl block mb-2">🧈</span>
+            <h5 class="font-bold text-slate-900 text-sm">4. Colesterol e Lipídios</h5>
+            <p class="text-xs text-slate-600 mt-1">Controlar colesterol e triglicérides (estudo ACCORD) reduz exsudatos lipídicos e progressão da retinopatia.</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-2xl block mb-2">🫘</span>
+            <h5 class="font-bold text-slate-900 text-sm">5. Cuidar dos Rins</h5>
+            <p class="text-xs text-slate-600 mt-1">Nefropatia e proteína na urina caminham junto com o edema macular, pois ambos refletem dano microvascular.</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-2xl block mb-2">🚭</span>
+            <h5 class="font-bold text-slate-900 text-sm">6. Não Fumar</h5>
+            <p class="text-xs text-slate-600 mt-1">O tabagismo agrava a isquemia vascular e acelera complicações graves na microcirculação ocular.</p>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm sm:col-span-2">
+            <span class="text-2xl block mb-2">🥗</span>
+            <h5 class="font-bold text-slate-900 text-sm">7. Peso, Alimentação e Atividade Física</h5>
+            <p class="text-xs text-slate-600 mt-1">Hábitos saudáveis controlam simultaneamente peso, resistência insulínica, pressão e lipídios, protegendo a visão a longo prazo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-display font-bold text-xl text-slate-900 mb-4">Tratamentos Oftalmológicos Quando Já Existe Alteração</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-teal-900 text-white rounded-2xl p-6 shadow-md">
+            <span class="text-3xl block mb-3">💉</span>
+            <h5 class="font-display font-bold text-lg mb-2">Injeções Intraoculares Anti-VEGF</h5>
+            <p class="text-sm text-teal-100 leading-relaxed">
+              Padrão ouro para <strong>edema macular diabético</strong> e retinopatia proliferativa. Bloqueia o fator de crescimento vascular, "secando" o inchaço e melhorando a acuidade visual.
+            </p>
+          </div>
+          <div class="bg-ocean-900 text-white rounded-2xl p-6 shadow-md">
+            <span class="text-3xl block mb-3">🔦</span>
+            <h5 class="font-display font-bold text-lg mb-2">Laser na Retina (Fotocoagulação)</h5>
+            <p class="text-sm text-ocean-100 leading-relaxed">
+              Aplica disparos controlados nas áreas isquêmicas da retina periférica para interromper o estímulo de vasos anormais e preservar a visão central.
+            </p>
+          </div>
+          <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md">
+            <span class="text-3xl block mb-3">🏥</span>
+            <h5 class="font-display font-bold text-lg mb-2">Cirurgia (Vitrectomia)</h5>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              Indicada em casos avançados com sangramento persistente no vítreo (hemorragia vítrea), fibrose ou descolamento tracional da retina.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pratica" class="reveal scroll-mt-20">
+      <div class="bg-white rounded-3xl shadow-md border border-slate-200 p-6 sm:p-10">
+        <div class="mb-6">
+          <span class="text-xs font-bold uppercase tracking-wider text-teal-700">06 • Treinamento Prático para Alunos</span>
+          <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Simulador de Atendimento no Balcão da Ótica</h3>
+          <p class="text-slate-600 mt-2">
+            Selecione uma situação real de atendimento abaixo e escolha a conduta técnica mais segura para o cliente.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-6" id="caseTabs">
+          <button type="button" onclick="selectCase(0)" class="case-tab px-4 py-2 rounded-xl font-bold text-sm bg-ocean-600 text-white transition">Caso 1: Multifocal Urgente</button>
+          <button type="button" onclick="selectCase(1)" class="case-tab px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Caso 2: Linhas Tortas</button>
+          <button type="button" onclick="selectCase(2)" class="case-tab px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Caso 3: Cortina Escura</button>
+          <button type="button" onclick="selectCase(3)" class="case-tab px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Caso 4: Visão Dupla Súbita</button>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+          <p id="caseScenario" class="text-slate-800 font-medium text-base mb-5 leading-relaxed"></p>
+          <div id="caseOptions" class="space-y-3"></div>
+          <div id="caseFeedback" class="hidden mt-5 p-4 rounded-xl text-sm font-medium"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-950 text-white py-12 mt-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="inline-block px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider">
+        Frase Simples para Guardar e Orientar Clientes
+      </span>
+      <p class="font-display text-xl sm:text-2xl font-bold text-white leading-relaxed">
+        "A diabetes estraga a visão devagar e em silêncio. A melhor prevenção é controlar glicose, pressão e colesterol — e fazer exame de retina mesmo quando está enxergando bem."
+      </p>
+      <p class="text-xs text-slate-400 pt-4">
+        Material didático interativo para formação de Técnicos em Ótica • Baseado nas diretrizes da ADA, AAO e SBD.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function wrapLabel(label, maxLen = 16) {
+      if (typeof label !== 'string' || label.length <= maxLen) return label;
+      const words = label.split(' ');
+      const lines = [];
+      let currentLine = '';
+      words.forEach(word => {
+        if ((currentLine + ' ' + word).trim().length > maxLen && currentLine.length > 0) {
+          lines.push(currentLine.trim());
+          currentLine = word;
+        } else {
+          currentLine = (currentLine + ' ' + word).trim();
+        }
+      });
+      if (currentLine.length > 0) lines.push(currentLine.trim());
+      return lines;
+    }
+
+    const commonTooltipConfig = {
+      callbacks: {
+        title: function(tooltipItems) {
+          const item = tooltipItems[0];
+          let label = item.chart.data.labels[item.dataIndex];
+          if (Array.isArray(label)) {
+            return label.join(' ');
+          } else {
+            return label;
+          }
+        }
+      }
+    };
+
+    const prevCtx = document.getElementById('prevalenceChart').getContext('2d');
+    const prevRawLabels = [
+      'Diabéticos com alguma lesão na retina',
+      'Diabéticos sem lesão retiniana aparente'
+    ];
+    new Chart(prevCtx, {
+      type: 'doughnut',
+      data: {
+        labels: prevRawLabels.map(l => wrapLabel(l, 16)),
+        datasets: [{
+          data: [33, 67],
+          backgroundColor: ['#0284C7', '#CBD5E1'],
+          borderColor: '#FFFFFF',
+          borderWidth: 3,
+          hoverOffset: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '64%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { font: { family: 'Inter', size: 12 }, padding: 16 }
+          },
+          tooltip: commonTooltipConfig
+        }
+      }
+    });
+
+    const riskCtx = document.getElementById('riskFactorsChart').getContext('2d');
+    const riskRawLabels = [
+      'Glicose alta e HbA1c elevada',
+      'Maior tempo de duração da diabetes',
+      'Pressão arterial alta não controlada',
+      'Doença renal e perda de proteína',
+      'Colesterol e triglicérides altos',
+      'Tabagismo ativo'
+    ];
+    new Chart(riskCtx, {
+      type: 'bar',
+      data: {
+        labels: riskRawLabels.map(l => wrapLabel(l, 16)),
+        datasets: [{
+          label: 'Índice de Impacto Clínico na Retina (0-100)',
+          data: [95, 90, 82, 78, 72, 68],
+          backgroundColor: [
+            '#DC2626',
+            '#0284C7',
+            '#F59E0B',
+            '#0D9488',
+            '#0EA5E9',
+            '#64748B'
+          ],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: 'y',
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            grid: { color: '#F1F5F9' },
+            ticks: { font: { family: 'Inter', size: 11 } }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { font: { family: 'Inter', size: 11, weight: '600' } }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: commonTooltipConfig
+        }
+      }
+    });
+
+    const stabCtx = document.getElementById('stabilizationChart').getContext('2d');
+    const stabRawLabels = [
+      'Semana 0 Pico Glicêmico',
+      'Semana 1 Início Controle',
+      'Semana 2 Redução Edema',
+      'Semana 3 Estabilização',
+      'Semana 4 Grau Real Seguro',
+      'Semana 6 Biometria Estável'
+    ];
+    new Chart(stabCtx, {
+      type: 'line',
+      data: {
+        labels: stabRawLabels.map(l => wrapLabel(l, 16)),
+        datasets: [
+          {
+            label: 'Desvio Míope Temporário (Dioptrias)',
+            data: [-2.25, -1.50, -0.75, -0.25, 0.00, 0.00],
+            borderColor: '#0284C7',
+            backgroundColor: 'rgba(2, 132, 199, 0.12)',
+            fill: true,
+            tension: 0.35,
+            borderWidth: 3,
+            pointRadius: 5,
+            pointBackgroundColor: '#0284C7'
+          },
+          {
+            label: 'Limite de Tolerância para Lentes Freeform',
+            data: [-0.25, -0.25, -0.25, -0.25, -0.25, -0.25],
+            borderColor: '#0D9488',
+            borderDash: [6, 6],
+            borderWidth: 2,
+            pointRadius: 0
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            min: -2.5,
+            max: 0.25,
+            title: { display: true, text: 'Variação Refrativa (D)', font: { size: 12, weight: 'bold' } },
+            grid: { color: '#F1F5F9' }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { font: { size: 11 } }
+          }
+        },
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: commonTooltipConfig
+        }
+      }
+    });
+
+    const canvas = document.getElementById('eyeCanvas');
+    const ctx = canvas.getContext('2d');
+    const slider = document.getElementById('glucoseSlider');
+    const glucoseDisplay = document.getElementById('glucoseDisplay');
+    const diopterShift = document.getElementById('diopterShift');
+    const lensState = document.getElementById('lensState');
+    const opticalAlertBox = document.getElementById('opticalAlertBox');
+    const opticalAlertTitle = document.getElementById('opticalAlertTitle');
+    const opticalAlertDesc = document.getElementById('opticalAlertDesc');
+
+    let currentGlucose = 100;
+
+    function updateSimulatorUI(val) {
+      glucoseDisplay.textContent = `${val} mg/dL`;
+      let shift = 0;
+      if (val > 140) {
+        shift = -((val - 140) / 260) * 2.50;
+      }
+      diopterShift.textContent = `${shift.toFixed(2)} D`;
+
+      if (val <= 140) {
+        diopterShift.className = 'font-display text-2xl font-extrabold text-teal-700';
+        lensState.textContent = 'Curvatura Normal';
+        opticalAlertBox.className = 'p-4 rounded-2xl bg-teal-50 border border-teal-200 text-teal-900 transition-colors';
+        opticalAlertTitle.innerHTML = '<span>✅</span> Conduta Óptica: Seguro para Aviar Receita';
+        opticalAlertDesc.textContent = 'Com glicemia controlada há pelo menos 3 a 4 semanas, o cristalino mantém biometria estável. Lentes progressivas freeform podem ser confeccionadas com segurança.';
+      } else if (val <= 240) {
+        diopterShift.className = 'font-display text-2xl font-extrabold text-amber-600';
+        lensState.textContent = 'Inchaço Osmótico Leve';
+        opticalAlertBox.className = 'p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 transition-colors';
+        opticalAlertTitle.innerHTML = '<span>⚠️</span> Conduta Óptica: Grau em Flutuação';
+        opticalAlertDesc.textContent = 'O sorbitol está puxando água para o cristalino. O grau medido hoje mudará quando a glicose baixar. Oriente aguardar estabilização antes de lentes definitivas.';
+      } else {
+        diopterShift.className = 'font-display text-2xl font-extrabold text-coral-600';
+        lensState.textContent = 'Cristalino Muito Inchado';
+        opticalAlertBox.className = 'p-4 rounded-2xl bg-coral-50 border border-coral-200 text-coral-900 transition-colors';
+        opticalAlertTitle.innerHTML = '<span>🛑</span> Conduta Óptica: Contraindicado Aviar Grau Final';
+        opticalAlertDesc.textContent = 'Miopização temporária severa! Fazer óculos agora causará inadaptação total assim que o paciente compensar a diabetes.';
+      }
+    }
+
+    function drawEye() {
+      const parent = canvas.parentElement;
+      const rect = parent.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) {
+        requestAnimationFrame(drawEye);
+        return;
+      }
+
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+      const cx = w * 0.58;
+      const cy = h * 0.5;
+      const eyeRadius = Math.max(10, Math.min(w * 0.25, h * 0.36));
+
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, eyeRadius, 0, Math.PI * 2);
+      ctx.fillStyle = '#0F172A';
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#334155';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, Math.max(5, eyeRadius - 3), -Math.PI * 0.42, Math.PI * 0.42);
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = currentGlucose > 240 ? '#EF4444' : '#F59E0B';
+      ctx.stroke();
+
+      const corneaX = cx - eyeRadius + 5;
+      const corneaRadius = Math.max(5, eyeRadius * 0.52);
+      ctx.beginPath();
+      ctx.arc(corneaX, cy, corneaRadius, Math.PI * 0.65, Math.PI * 1.35);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#38BDF8';
+      ctx.stroke();
+
+      let swell = currentGlucose > 140 ? (currentGlucose - 140) / 260 : 0;
+      const pulse = swell > 0 ? Math.sin(Date.now() / 220) * (swell * 1.8) : 0;
+      const lensX = cx - eyeRadius * 0.52;
+      const lensW = Math.max(4, 11 + swell * 15 + pulse);
+      const lensH = Math.max(10, eyeRadius * 0.42 + swell * 4);
+
+      ctx.beginPath();
+      ctx.ellipse(lensX, cy, lensW, lensH, 0, 0, Math.PI * 2);
+      ctx.fillStyle = swell > 0 ? 'rgba(245, 158, 11, 0.35)' : 'rgba(20, 184, 166, 0.35)';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = swell > 0 ? '#FBBF24' : '#2DD4BF';
+      ctx.stroke();
+
+      if (swell > 0.05) {
+        const dots = Math.floor(swell * 14);
+        ctx.fillStyle = '#FDE047';
+        for (let i = 0; i < dots; i++) {
+          const angle = (i / dots) * Math.PI * 2 + (Date.now() / 1200);
+          const dx = lensX + Math.cos(angle) * (lensW * 0.45);
+          const dy = cy + Math.sin(angle) * (lensH * 0.55);
+          ctx.beginPath();
+          ctx.arc(dx, dy, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      const retinaX = cx + eyeRadius - 3;
+      const focusX = retinaX - swell * (eyeRadius * 0.62);
+      const rayStartX = 16;
+      const offsets = [-32, 0, 32];
+
+      offsets.forEach(off => {
+        ctx.beginPath();
+        ctx.moveTo(rayStartX, cy + off);
+        ctx.lineTo(lensX, cy + off * 0.68);
+        ctx.lineTo(focusX, cy);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = swell > 0.05 ? '#F59E0B' : '#14B8A6';
+        ctx.stroke();
+
+        if (swell > 0.05) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.setLineDash([4, 4]);
+          ctx.moveTo(focusX, cy);
+          const slope = -(off * 0.68) / (focusX - lensX);
+          const hitY = cy + slope * (retinaX - focusX);
+          ctx.lineTo(retinaX, hitY);
+          ctx.strokeStyle = '#EF4444';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+
+      ctx.beginPath();
+      ctx.arc(focusX, cy, Math.max(3, 4.5 + swell * 2), 0, Math.PI * 2);
+      ctx.fillStyle = swell > 0.05 ? '#EF4444' : '#2DD4BF';
+      ctx.fill();
+
+      ctx.font = '600 11px Inter, sans-serif';
+      ctx.fillStyle = '#94A3B8';
+      ctx.fillText('Raios de Luz', 16, cy - 42);
+      ctx.fillText('Cristalino', lensX - 24, cy - lensH - 10);
+      ctx.fillText('Retina', retinaX - 18, cy - eyeRadius * 0.55);
+
+      ctx.font = '700 12px Inter, sans-serif';
+      if (swell > 0.05) {
+        ctx.fillStyle = '#F87171';
+        ctx.fillText('Foco antes da retina (Miopia)', Math.max(16, focusX - 85), cy + eyeRadius * 0.68);
+      } else {
+        ctx.fillStyle = '#2DD4BF';
+        ctx.fillText('Foco exato na retina (Nítido)', retinaX - 155, cy + eyeRadius * 0.68);
+      }
+
+      requestAnimationFrame(drawEye);
+    }
+
+    slider.addEventListener('input', (e) => {
+      currentGlucose = parseInt(e.target.value, 10);
+      updateSimulatorUI(currentGlucose);
+    });
+
+    updateSimulatorUI(currentGlucose);
+    drawEye();
+
+    const casesData = [
+      {
+        scenario: 'Cliente de 54 anos, diabético tipo 2, chega à ótica com uma receita nova de lentes multifocais freeform de alto valor. Ele comenta que sua glicemia estava em 340 mg/dL na semana passada, quando fez o exame de vista, e que hoje começou a tomar insulina e a visão já está mudando de novo.',
+        options: [
+          {
+            text: 'Confeccionar imediatamente as lentes multifocais usando a receita apresentada, pois o médico já assinou.',
+            correct: false,
+            feedback: 'Incorreto! Com glicemia de 340 mg/dL no dia do exame, o cristalino estava inchado pelo sorbitol (grau falso). Assim que a insulina estabilizar a glicose, o grau vai mudar e o cliente não se adaptará às lentes.'
+          },
+          {
+            text: 'Explicar o "efeito esponja" no cristalino e orientar o retorno ao oftalmologista para reconfirmar a refração após 3 a 4 semanas de glicemia estabilizada.',
+            correct: true,
+            feedback: 'Correto! Essa conduta protege o cliente de um gasto perdido com lentes inadequadas e demonstra domínio técnico sobre a fisiologia ocular na diabetes.'
+          }
+        ]
+      },
+      {
+        scenario: 'Uma cliente diabética relata que, ao olhar para a grade da janela ou para os azulejos do banheiro, as linhas parecem tortas e onduladas, além de ter dificuldade para ler rostos no centro da visão.',
+        options: [
+          {
+            text: 'Suspeitar de Edema Macular Diabético e orientar avaliação oftalmológica prioritária com exame de retina e OCT.',
+            correct: true,
+            feedback: 'Correto! Metamorfopsia (linhas tortas) e perda de nitidez central são sinais clássicos de acúmulo de líquido na mácula, exigindo tratamento médico (como anti-VEGF) e não apenas troca de óculos.'
+          },
+          {
+            text: 'Aumentar apenas o grau de perto (adição) para tentar corrigir as linhas onduladas na leitura.',
+            correct: false,
+            feedback: 'Incorreto! Lentes de aumento não corrigem distorção causada por inchaço na mácula. Atrasar o encaminhamento pode levar à perda permanente da visão central.'
+          }
+        ]
+      },
+      {
+        scenario: 'Um senhor diabético entra na ótica assustado dizendo que, há duas horas, começou a ver uma "chuva de mosquinhas pretas", flashes de luz e agora parece haver uma "cortina escura" descendo no canto do olho direito.',
+        options: [
+          {
+            text: 'Agendar uma consulta de rotina para o mês seguinte para verificar o grau dos óculos.',
+            correct: false,
+            feedback: 'Incorreto! Esses sintomas indicam emergência oftalmológica grave (possível hemorragia vítrea ou descolamento de retina).'
+          },
+          {
+            text: 'Encaminhar imediatamente ao pronto-socorro oftalmológico no mesmo dia.',
+            correct: true,
+            feedback: 'Correto! Perda súbita, flashes, chuva de moscas volantes e "cortina escura" são sinais de urgência máxima e exigem intervenção médica imediata.'
+          }
+        ]
+      },
+      {
+        scenario: 'Paciente diabético procura a ótica relatando que acordou vendo tudo duplicado (diplopia) e percebeu que um dos olhos parece levemente desviado para o lado, sem dor forte ou perda de nitidez.',
+        options: [
+          {
+            text: 'Explicar que a diabetes pode causar isquemia nos nervos que movimentam os olhos (neuropatia craniana) e orientar avaliação médica; evitar lentes prismáticas definitivas de imediato.',
+            correct: true,
+            feedback: 'Correto! A diplopia diabética por paresia de nervo craniano geralmente é transitória e regride em semanas/meses com o controle metabólico, dispensando prismas definitivos precoces.'
+          },
+          {
+            text: 'Prescrever imediatamente um prisma definitivo alto nos óculos sem avaliação médica.',
+            correct: false,
+            feedback: 'Incorreto! Como o desvio ocular diabético costuma regredir espontaneamente após o controle clínico, um prisma definitivo logo ficará supercorrigido.'
+          }
+        ]
+      }
+    ];
+
+    function selectCase(idx) {
+      const tabs = document.querySelectorAll('.case-tab');
+      tabs.forEach((tab, i) => {
+        if (i === idx) {
+          tab.className = 'case-tab px-4 py-2 rounded-xl font-bold text-sm bg-ocean-600 text-white transition shadow-sm';
+        } else {
+          tab.className = 'case-tab px-4 py-2 rounded-xl font-bold text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+        }
+      });
+
+      const current = casesData[idx];
+      document.getElementById('caseScenario').textContent = current.scenario;
+      const optionsContainer = document.getElementById('caseOptions');
+      const feedbackBox = document.getElementById('caseFeedback');
+      feedbackBox.classList.add('hidden');
+      optionsContainer.innerHTML = '';
+
+      current.options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'w-full text-left p-4 rounded-xl bg-white border border-slate-300 hover:border-ocean-500 hover:bg-ocean-50/50 text-sm font-semibold text-slate-800 transition';
+        btn.textContent = opt.text;
+        btn.onclick = () => {
+          feedbackBox.classList.remove('hidden');
+          if (opt.correct) {
+            feedbackBox.className = 'mt-5 p-4 rounded-xl text-sm font-medium bg-teal-50 border border-teal-300 text-teal-900';
+          } else {
+            feedbackBox.className = 'mt-5 p-4 rounded-xl text-sm font-medium bg-coral-50 border border-coral-300 text-coral-900';
+          }
+          feedbackBox.textContent = opt.feedback;
+        };
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    selectCase(0);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
